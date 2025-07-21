@@ -5,10 +5,14 @@
  * @type {import("prettier").Config}
  */
 const config = {
-  trailingComma: "es5",
+  trailingComma: 'es5',
   tabWidth: 2,
   semi: false,
   singleQuote: true,
-};
+  importOrder: ['.scss|.css'],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
+  plugins: ['@trivago/prettier-plugin-sort-imports'],
+}
 
-export default config;
+export default config

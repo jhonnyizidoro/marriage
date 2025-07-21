@@ -7,17 +7,22 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "schema:generate": "kysely-codegen --out-file ./src/db/schema.ts && prettier --write ./src/db/schema.ts"
   },
   "dependencies": {
+    "kysely": "^0.28.3",
     "next": "15.4.2",
+    "pg": "^8.16.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "sass": "^1.89.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^20",
+    "@types/pg": "^8.15.4",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
@@ -25,6 +30,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.3",
     "husky": "^9.1.7",
+    "kysely-codegen": "^0.18.5",
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
     "typescript": "^5"

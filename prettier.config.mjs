@@ -9,7 +9,7 @@ const config = {
   tabWidth: 2,
   semi: false,
   singleQuote: true,
-  importOrder: ['.scss|.css'],
+  importOrder: ['@/components', '@/assets|./images', '.scss|.css'],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
   plugins: ['@trivago/prettier-plugin-sort-imports'],

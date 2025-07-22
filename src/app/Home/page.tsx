@@ -1,5 +1,11 @@
 import type { FC } from 'react'
 
-const HomePage: FC = () => <div />
+import Hero from '@/components/Hero'
+
+const HomePage: FC = () => (
+  <>
+    <Hero />
+  </>
+)
 
 export default HomePage

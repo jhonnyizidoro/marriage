@@ -1,0 +1,83 @@
+.container {
+  display: grid;
+  grid-template-columns: auto 400px auto;
+  gap: min(8vw, 140px);
+  margin-block: 100px;
+}
+
+.left {
+  position: relative;
+}
+
+.image {
+  position: absolute;
+  height: auto;
+  object-fit: cover;
+}
+
+.image1 {
+  height: 80%;
+  width: 80%;
+  top: 0;
+  left: 0;
+}
+
+.image2 {
+  height: 60%;
+  width: 65%;
+  right: 0;
+  bottom: 0;
+}
+
+.title {
+  text-align: center;
+  padding-block: min(80px, 4vw);
+}
+
+.titleHeader {
+  font-size: 90px;
+  font-weight: 300;
+}
+
+.titleName1 {
+  font-size: 120px;
+  font-weight: 400;
+}
+
+.titleAnd {
+  font-size: 100px;
+  font-weight: 300;
+}
+
+.titleName2 {
+  font-size: 130px;
+  font-weight: 400;
+}
+
+.right {
+  position: relative;
+}
+
+.image3 {
+  height: 40%;
+  width: 35%;
+  left: 0;
+  bottom: 5%;
+  border-radius: 99px 99px 0 0;
+  z-index: 2;
+}
+
+.image4 {
+  width: 60%;
+  height: 90%;
+  bottom: 0;
+  left: 10%;
+  z-index: 1;
+}
+
+.image5 {
+  width: 35%;
+  height: 40%;
+  top: 0;
+  right: 0;
+}

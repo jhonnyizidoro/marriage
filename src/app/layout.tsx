@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 }
 
 const RootLayout = ({ children }: PropsWithChildren) => (
-  <html lang="en">
+  <html lang="pt-br">
     <body className={moneta.variable}>
       <Nav />
       {children}

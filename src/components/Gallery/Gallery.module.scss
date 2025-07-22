@@ -1,0 +1,38 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  align-items: start;
+  margin-block: 100px;
+}
+
+.column {
+  display: grid;
+  gap: 40px;
+
+  &:nth-child(1),
+  &:nth-child(3) {
+    img:nth-child(odd) {
+      aspect-ratio: 1;
+    }
+
+    img:nth-child(even) {
+      aspect-ratio: 0.75;
+    }
+  }
+
+  &:nth-child(2) {
+    img:nth-child(even) {
+      aspect-ratio: 1;
+    }
+
+    img:nth-child(odd) {
+      aspect-ratio: 0.75;
+    }
+  }
+}
+
+.image {
+  object-fit: cover;
+  height: auto;
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { PropsWithChildren } from 'react'
 
+import Footer from '@/components/Footer'
 import Nav from '@/components/Nav'
 
 import '@/assets/app.scss'
@@ -17,6 +18,7 @@ const RootLayout = ({ children }: PropsWithChildren) => (
     <body className={moneta.variable}>
       <Nav />
       {children}
+      <Footer />
     </body>
   </html>
 )

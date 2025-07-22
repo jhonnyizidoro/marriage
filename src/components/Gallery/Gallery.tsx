@@ -1,16 +1,17 @@
 import splitArrayIntoGroups from '@/utils/splitArrayIntoGroups'
 import Image from 'next/image'
 import { readdirSync } from 'node:fs'
+import { join } from 'node:path'
 import type { FC } from 'react'
 
 import Container from '@/components/Container'
 
 import styles from './Gallery.module.scss'
 
-const images = readdirSync('./public/gallery')
+const dir = join(process.cwd(), 'public/gallery')
+const images = readdirSync(dir)
 const groups = splitArrayIntoGroups(images, 3)
 
-console.log(images)
 const Gallery: FC = () => (
   <Container className={styles.container}>
     {groups.map((col, i) => (

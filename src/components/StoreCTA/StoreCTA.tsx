@@ -41,13 +41,18 @@ const StoreCTA: FC = () => (
           scrambled it to make a type specimen book. It has survived not only
           five centuries, but also the leap into electronic.
         </p>
-        <Link className={styles.cta} href={env.storeUrl}>
+        <Link className={styles.cta} target="_blank" href={env.storeUrl}>
           Lista de presentes
         </Link>
       </div>
       <div className={styles.list}>
         {[...products, ...products, ...products].map((p, i) => (
-          <Link href={env.storeUrl} key={i} className={styles.item}>
+          <Link
+            target="_blank"
+            href={env.storeUrl}
+            key={i}
+            className={styles.item}
+          >
             <Image
               className={styles.image}
               src={p.image}

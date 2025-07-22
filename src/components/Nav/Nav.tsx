@@ -36,7 +36,7 @@ const Nav: FC = () => (
         />
       </Link>
       <div className={styles.buttonWrapper}>
-        <Link className={styles.button} href={env.storeUrl}>
+        <Link className={styles.button} href={env.storeUrl} target="_blank">
           Lisa de compras
         </Link>
       </div>

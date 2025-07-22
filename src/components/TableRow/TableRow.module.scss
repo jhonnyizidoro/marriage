@@ -1,0 +1,7 @@
+.row {
+  padding-block: 15px;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--gray);
+  }
+}

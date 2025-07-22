@@ -1,4 +1,15 @@
 .container {
-  width: min(1640px, 95%);
   margin-inline: auto;
+
+  &[data-size='large'] {
+    width: min(1640px, 95%);
+  }
+
+  &[data-size='medium'] {
+    width: min(900px, 95%);
+  }
+
+  &[data-size='small'] {
+    width: min(430px, 95%);
+  }
 }

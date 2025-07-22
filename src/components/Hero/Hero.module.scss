@@ -29,9 +29,9 @@
   bottom: 0;
 }
 
-.title {
-  text-align: center;
+.center {
   padding-block: min(80px, 4vw);
+  text-align: center;
 }
 
 .titleHeader {
@@ -52,6 +52,37 @@
 .titleName2 {
   font-size: 130px;
   font-weight: 400;
+}
+
+.subtitle {
+  color: var(--red);
+  font-size: 32px;
+}
+
+.legend {
+  display: inline-block;
+  position: relative;
+  padding-inline: 15px;
+
+  &::before,
+  &::after {
+    width: 5px;
+    height: 5px;
+    background: var(--dark);
+    content: '';
+    display: block;
+    border-radius: 99px;
+    position: absolute;
+    top: 9px;
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
 }
 
 .right {

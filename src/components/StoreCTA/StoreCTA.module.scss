@@ -1,0 +1,77 @@
+.wrapper {
+  overflow: hidden;
+  margin-block: 160px;
+  position: relative;
+
+  &::after {
+    content: '';
+    width: 40%;
+    pointer-events: none;
+    height: 100%;
+    background: linear-gradient(to right, transparent, var(--background));
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.container {
+  display: flex;
+  gap: 100px;
+  align-items: center;
+}
+
+.content {
+  flex-basis: 50%;
+  flex-shrink: 0;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 48px;
+}
+
+.text {
+  line-height: 1.4;
+  font-size: 18px;
+  margin-block: 40px;
+}
+
+.cta {
+  background: var(--red);
+  color: var(--background);
+  font-size: 18px;
+  padding: 15px 40px;
+  display: inline-block;
+}
+
+.list {
+  display: flex;
+  gap: 45px;
+}
+
+.item {
+  width: 250px;
+  background: var(--light-orange);
+}
+
+.image {
+  aspect-ratio: 1.1;
+  object-fit: cover;
+  height: auto;
+}
+
+.itemContent {
+  padding: 15px;
+}
+
+.itemTitle {
+  color: var(--red);
+  margin-block: 5px 0;
+  font-size: 22px;
+}
+
+.itemPrice {
+  font-size: 18px;
+}

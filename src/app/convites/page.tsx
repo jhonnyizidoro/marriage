@@ -1,4 +1,4 @@
-import { db } from '@/db/db'
+import getInvitesData from '@/api/getInvitesData'
 import Link from 'next/link'
 import type { FC } from 'react'
 
@@ -18,28 +18,9 @@ type Props = {
   }>
 }
 
-export const getData = async () => {
-  const [invites, invitedPeople] = await Promise.all([
-    db.selectFrom('invites').selectAll().execute(),
-    db.selectFrom('invitedPeople').selectAll().execute(),
-  ])
-
-  return invites.map((i) => ({
-    id: i.id,
-    name: i.name,
-    people: invitedPeople
-      .filter((p) => p.invite === i.id)
-      .map((p) => ({
-        id: p.id,
-        name: p.name,
-        confirmed: !!p.confirmedAt,
-      })),
-  }))
-}
-
 const InvitesPage: FC<Props> = async ({ searchParams }) => {
   const id = (await searchParams).id
-  const data = await getData()
+  const data = await getInvitesData()
   const editing = data.find((i) => i.id === id)
   const people = data.map((d) => d.people).flat()
   const confirmed = people.filter((p) => p.confirmed)

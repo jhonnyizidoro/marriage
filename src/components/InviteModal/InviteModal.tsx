@@ -1,7 +1,7 @@
 'use client'
 
 import createOrUpdateInviteAction from '@/actions/createOrUpdateInvite'
-import { type getData } from '@/app/convites/page'
+import getInvitesData from '@/api/getInvitesData'
 import { useAction } from 'next-safe-action/hooks'
 import { type FC, useCallback, useEffect, useState } from 'react'
 
@@ -15,7 +15,7 @@ import CloseIcon from '@/assets/icons/CloseIcon'
 import styles from './InviteModal.module.scss'
 
 type Props = {
-  data?: Awaited<ReturnType<typeof getData>>[number]
+  data?: Awaited<ReturnType<typeof getInvitesData>>[number]
 }
 
 const InviteModal: FC<Props> = ({ data }) => {

@@ -1,4 +1,4 @@
-import { db } from '@/db/db'
+import getSongRequestsData from '@/api/getSongRequestsData'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'
@@ -11,12 +11,8 @@ import TableRow from '@/components/TableRow'
 
 import styles from './page.module.scss'
 
-const getData = () => {
-  return db.selectFrom('songRequests').selectAll().execute()
-}
-
 const SongRequestsPage: FC = async () => {
-  const data = await getData()
+  const data = await getSongRequestsData()
 
   return (
     <Container size="small" className={styles.wrapper}>

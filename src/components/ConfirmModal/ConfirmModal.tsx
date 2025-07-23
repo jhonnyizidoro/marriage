@@ -1,7 +1,7 @@
 'use client'
 
 import confirmInviteAction from '@/actions/confirmInvite'
-import { type getData } from '@/app/home/page'
+import getHomeData from '@/api/getHomeData'
 import { useAction } from 'next-safe-action/hooks'
 import { type FC, useCallback, useEffect, useState } from 'react'
 
@@ -12,7 +12,7 @@ import { toastify } from '@/components/Toast'
 import styles from './ConfirmModal.module.scss'
 
 type Props = {
-  data: NonNullable<Awaited<ReturnType<typeof getData>>>
+  data: NonNullable<Awaited<ReturnType<typeof getHomeData>>>
 }
 
 const ConfirmModal: FC<Props> = ({ data }) => {

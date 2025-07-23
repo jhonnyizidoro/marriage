@@ -22,9 +22,9 @@ const InviteGenerate: FC<Props> = ({ className, children, ids }) => {
     } else {
       action.result.data?.forEach(({ base64, name }) => {
         const [prefix, data] = base64.split(',')
-        const mime = prefix.match(/:(.*?);/)?.[1] ?? 'image/jpeg'
+        const mime = prefix?.match(/:(.*?);/)?.[1] ?? 'image/jpeg'
         const blob = new Blob(
-          [Uint8Array.from(atob(data), (c) => c.charCodeAt(0))],
+          [Uint8Array.from(atob(data || ''), (c) => c.charCodeAt(0))],
           { type: mime }
         )
         const url = URL.createObjectURL(blob)

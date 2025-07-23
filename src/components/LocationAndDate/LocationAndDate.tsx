@@ -13,6 +13,10 @@ import WazeIcon from '@/assets/icons/WazeIcon'
 
 import styles from './LocationAndDate.module.scss'
 
+type Props = {
+  showIframe?: boolean
+}
+
 const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(env.address)}`
 
 const wazeLink = `https://waze.com/ul?q=${encodeURIComponent(env.address)}`
@@ -55,45 +59,52 @@ const agenda = [
   }
 })
 
-const LocationAndDate: FC = () => {
-  return (
-    <div className={styles.wrapper}>
-      <Container size="medium">
-        <h2 className={styles.title}>Local e horário</h2>
-        <p className={styles.text}>
-          Nosso casamento acontecerá no dia{' '}
-          <strong>{getDate(env.marriageDate)}</strong>, com início previsto para
-          às <strong>{getTime(env.marriageDate)}</strong>. A cerimônia será
-          realizada no espaço <strong>{env.address}</strong>. Pedimos com muito
-          carinho que todos os convidados cheguem com pelo menos 15 minutos de
-          antecedência, para que possamos iniciar o evento no horário previsto e
-          garantir que todos aproveitem cada momento da cerimônia. O local conta
-          com estacionamento gratuito e seguro, localizado logo na entrada
-          principal, com sinalização e equipe disponível para orientar os
-          veículos.
-        </p>
-        <div className={styles.links}>
-          <Link className={styles.link} target="_blank" href={mapsLink}>
-            <GoogleMapsIcon width={24} />
-            Abrir no Google maps
-          </Link>
-          <Link className={styles.link} target="_blank" href={wazeLink}>
-            <WazeIcon width={24} />
-            Abrir no Waze
-          </Link>
+const LocationAndDate: FC<Props> = ({ showIframe }) => (
+  <div className={styles.wrapper}>
+    <Container size="medium">
+      <h2 className={styles.title}>Local e horário</h2>
+      <p className={styles.text}>
+        Nosso casamento acontecerá no dia{' '}
+        <strong>{getDate(env.marriageDate)}</strong>, com início previsto para
+        às <strong>{getTime(env.marriageDate)}</strong>. A cerimônia será
+        realizada no espaço <strong>{env.address}</strong>. Pedimos com muito
+        carinho que todos os convidados cheguem com pelo menos 15 minutos de
+        antecedência, para que possamos iniciar o evento no horário previsto e
+        garantir que todos aproveitem cada momento da cerimônia. O local conta
+        com estacionamento gratuito e seguro, localizado logo na entrada
+        principal, com sinalização e equipe disponível para orientar os
+        veículos.
+      </p>
+      <div className={styles.links}>
+        <Link className={styles.link} target="_blank" href={mapsLink}>
+          <GoogleMapsIcon width={24} />
+          Abrir no Google maps
+        </Link>
+        <Link className={styles.link} target="_blank" href={wazeLink}>
+          <WazeIcon width={24} />
+          Abrir no Waze
+        </Link>
+      </div>
+      {showIframe && (
+        <div className={styles.iframeWrapper}>
+          <iframe
+            className={styles.iframe}
+            loading="lazy"
+            src={`https://www.google.com/maps?q=${env.address}&output=embed`}
+          />
         </div>
-      </Container>
-      <Container size="small">
-        <TableHeader>Agenda</TableHeader>
-        {agenda.map((item, i) => (
-          <TableRow key={i} className={styles.agendaItem}>
-            <span>{item.title}</span>
-            <strong>{item.startsAt.toLocaleString()}</strong>
-          </TableRow>
-        ))}
-      </Container>
-    </div>
-  )
-}
+      )}
+    </Container>
+    <Container size="small">
+      <TableHeader>Agenda</TableHeader>
+      {agenda.map((item, i) => (
+        <TableRow key={i} className={styles.agendaItem}>
+          <span>{item.title}</span>
+          <strong>{item.startsAt.toLocaleString()}</strong>
+        </TableRow>
+      ))}
+    </Container>
+  </div>
+)
 
 export default LocationAndDate

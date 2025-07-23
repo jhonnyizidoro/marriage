@@ -29,6 +29,31 @@
   align-items: center;
 }
 
+.iframeWrapper {
+  margin-bottom: 50px;
+  position: relative;
+
+  filter: drop-shadow(0 0 0 2px red);
+}
+
+.iframe {
+  --offset: 3.5%;
+
+  width: 100%;
+  aspect-ratio: 2;
+  border: 0;
+  clip-path: polygon(
+    var(--offset) 0,
+    calc(100% - var(--offset)) 0,
+    100% calc(var(--offset) * 2),
+    100% calc(100% - var(--offset) * 2),
+    calc(100% - var(--offset)) 100%,
+    var(--offset) 100%,
+    0 calc(100% - var(--offset) * 2),
+    0 calc(var(--offset) * 2)
+  );
+}
+
 .agendaItem {
   display: flex;
   justify-content: space-between;

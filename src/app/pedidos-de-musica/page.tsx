@@ -11,7 +11,7 @@ import TableRow from '@/components/TableRow'
 
 import styles from './page.module.scss'
 
-export const getData = () => {
+const getData = () => {
   return db.selectFrom('songRequests').selectAll().execute()
 }
 

@@ -15,7 +15,7 @@ const Input: FC<Props> = ({ onChange, error, label, ...inputProps }) => {
   const id = useId()
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <label htmlFor={id}>{label}</label>
       <input
         className={styles.input}

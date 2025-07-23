@@ -33,13 +33,11 @@ const Modal: FC<Props> = ({
 
   const handleKeyEvents = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === 'Enter') {
-        onOk()
-      } else if (e.key === 'Escape') {
+      if (e.key === 'Escape') {
         replace(pathname)
       }
     },
-    [onOk, pathname, replace]
+    [pathname, replace]
   )
 
   useEffect(() => {

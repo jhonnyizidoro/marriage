@@ -1,0 +1,64 @@
+.wrapper {
+  padding-block: 80px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.link {
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: underline;
+  display: block;
+  text-align: right;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rowName {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.rowCount {
+  font-size: 14px;
+}
+
+.rowText {
+  font-size: 14px;
+  display: block;
+}
+
+.rowRight {
+  text-align: right;
+}
+
+.rowLink {
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.rowButton {
+  background: transparent;
+  border: 0;
+  line-height: 1;
+  cursor: pointer;
+
+  &:last-child {
+    padding-inline: 10px 0;
+    border-left: 1px solid var(--dark);
+  }
+
+  &:first-child {
+    padding-inline: 0 10px;
+  }
+}

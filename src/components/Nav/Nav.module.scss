@@ -26,10 +26,9 @@
   gap: 35px;
 }
 
-.dropdownLink {
+.dropdownWrapper {
   position: relative;
   padding: 20px;
-  cursor: pointer;
   font-size: 18px;
 
   &::after {
@@ -51,16 +50,24 @@
   }
 }
 
+.dropdownLink {
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--red);
+  font-weight: 700;
+  text-align: center;
+  background: transparent;
+  padding: 10px;
+  border: 0;
+  display: block;
+  width: 100%;
+}
+
 .dropdown {
   position: absolute;
   background: var(--light-red);
-  display: grid;
   box-shadow: 7px 7px 13px rgba(0, 0, 0, 0.1);
   right: 0;
-  text-align: center;
-  color: var(--red);
-  font-weight: 700;
-  gap: 10px;
   height: 0;
   overflow: clip;
   transition: 0.3s;

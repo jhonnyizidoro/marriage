@@ -1,3 +1,7 @@
+.wrapper {
+  position: relative;
+}
+
 .input {
   width: 100%;
   border: 0;
@@ -14,4 +18,8 @@
 
 .error {
   color: var(--red);
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -20px;
 }

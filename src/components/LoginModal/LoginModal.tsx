@@ -10,15 +10,15 @@ import { toastify } from '@/components/Toast'
 
 const LoginModal: FC = () => {
   const [password, setPassword] = useState('')
-  const res = useAction(loginAction)
+  const action = useAction(loginAction)
 
   useEffect(() => {
-    const errorMessage = res.result.serverError || res.result.data?.error
+    const errorMessage = action.result.serverError || action.result.data?.error
 
     if (errorMessage) {
       toastify({ message: errorMessage })
     }
-  }, [res.result])
+  }, [action.result])
 
   return (
     <Modal
@@ -26,7 +26,7 @@ const LoginModal: FC = () => {
       title="Faça seu login"
       cancelLabel="Canelar"
       okLabel="Fazer login"
-      onOk={() => res.execute({ password })}
+      onOk={() => action.execute({ password })}
     >
       <Input
         label="Senha"
@@ -34,7 +34,7 @@ const LoginModal: FC = () => {
         value={password}
         autoComplete="current-password"
         type="password"
-        error={res.result.validationErrors?.password?._errors?.[0]}
+        error={action.result.validationErrors?.password?._errors?.[0]}
       />
     </Modal>
   )

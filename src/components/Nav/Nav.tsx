@@ -6,6 +6,7 @@ import type { FC } from 'react'
 
 import Container from '@/components/Container'
 import LoginModal from '@/components/LoginModal'
+import NavLogout from '@/components/NavLogout'
 
 import Logo from './images/logo.png'
 
@@ -49,15 +50,16 @@ const Nav: FC = async () => {
           )}
 
           {accessToken && (
-            <div role="link" className={styles.dropdownLink}>
+            <div role="link" className={styles.dropdownWrapper}>
               Ações
               <div className={styles.dropdown}>
-                <Link className={styles.link} href="/convidados">
+                <Link className={styles.dropdownLink} href="/convidados">
                   Convidados
                 </Link>
-                <Link className={styles.link} href="/playlist">
+                <Link className={styles.dropdownLink} href="/playlist">
                   Playlist
                 </Link>
+                <NavLogout className={styles.dropdownLink}>Logout</NavLogout>
               </div>
             </div>
           )}

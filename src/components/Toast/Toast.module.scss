@@ -6,6 +6,7 @@
   animation: showToast 0.25s forwards;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   width: min(70%, 400px);
+  transition: 0.3s;
 }
 
 .closeButton {

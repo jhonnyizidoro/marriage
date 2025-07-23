@@ -29,13 +29,21 @@
   align-items: center;
 }
 
-.rowName {
+.rowTitle {
   font-size: 18px;
   font-weight: 400;
 }
 
 .rowCount {
   font-size: 14px;
+}
+
+.rowName {
+  margin-right: 10px;
+
+  &[data-confirmed='false'] {
+    text-decoration: line-through rgba(0, 0, 0, 0.3);
+  }
 }
 
 .rowText {

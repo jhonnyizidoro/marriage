@@ -73,12 +73,20 @@ const InvitesPage: FC<Props> = async ({ searchParams }) => {
       {data.map((i) => (
         <TableRow key={i.id} className={styles.row}>
           <div>
-            <h3 className={styles.rowName}>{i.name}</h3>
+            <h3 className={styles.rowTitle}>{i.name}</h3>
             <strong className={styles.rowCount}>
               {i.people.length} pessoa{i.people.length > 1 ? 's' : ''}
             </strong>
             <span className={styles.rowText}>
-              {i.people.map((p) => p.name.split(' ')[0]).join(', ')}
+              {i.people.map((p, i) => (
+                <span
+                  key={i}
+                  className={styles.rowName}
+                  data-confirmed={p.confirmed}
+                >
+                  {p.name.split(' ')[0]}
+                </span>
+              ))}
             </span>
           </div>
           <div className={styles.rowRight}>

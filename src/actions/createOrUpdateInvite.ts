@@ -13,6 +13,7 @@ const createOrUpdateInviteAction = createSafeActionClient()
     z.object({
       id: z.uuidv4().optional(),
       name: z.string().min(1),
+      autoConfirm: z.boolean(),
       people: z
         .array(z.object({ id: z.uuidv4().optional(), name: z.string().min(1) }))
         .min(1),
@@ -21,7 +22,8 @@ const createOrUpdateInviteAction = createSafeActionClient()
   .action(async ({ parsedInput }) => {
     const cookieStore = await cookies()
     const accessToken = cookieStore.get('accessToken')?.value || ''
-    const { id, name, people } = parsedInput
+    const { id, name, people, autoConfirm } = parsedInput
+    console.log({ autoConfirm })
 
     // check session
     await db
@@ -47,7 +49,11 @@ const createOrUpdateInviteAction = createSafeActionClient()
       // new invited people
       const invitedPeopleToCreate = people
         .filter((p) => !p.id)
-        .map((p) => ({ name: p.name, invite: id }))
+        .map((p) => ({
+          name: p.name,
+          invite: id,
+          confirmedAt: autoConfirm ? new Date() : null,
+        }))
 
       // people deselected from invite
       const invitedPeopleToDelete = invitedPeople
@@ -65,6 +71,12 @@ const createOrUpdateInviteAction = createSafeActionClient()
             .insertInto('invitedPeople')
             .values(invitedPeopleToCreate)
             .executeTakeFirstOrThrow(),
+        autoConfirm &&
+          db
+            .updateTable('invitedPeople')
+            .where('invite', '=', id)
+            .set({ confirmedAt: new Date() })
+            .execute(),
       ])
 
       redirect('/convites')
@@ -72,13 +84,23 @@ const createOrUpdateInviteAction = createSafeActionClient()
 
     const createdInvite = await db
       .insertInto('invites')
-      .values({ name, createdAt: new Date() })
+      .values({
+        name,
+        createdAt: new Date(),
+        confirmedAt: autoConfirm ? new Date() : null,
+      })
       .returning('id')
       .executeTakeFirstOrThrow()
 
     await db
       .insertInto('invitedPeople')
-      .values(people.map((p) => ({ invite: createdInvite.id, name: p.name })))
+      .values(
+        people.map((p) => ({
+          invite: createdInvite.id,
+          name: p.name,
+          confirmedAt: autoConfirm ? new Date() : null,
+        }))
+      )
       .execute()
 
     redirect('/convites')

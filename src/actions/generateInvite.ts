@@ -20,7 +20,7 @@ const generateInvite = async ({
   id: string
   name: string
 }) => {
-  const url = `${env.domain}?confirm=${id}`
+  const url = `${env.domain}?modal=confirm&id=${id}`
   const x = template.width - 200 - 20
   const y = template.height - 200 - 20
   const qrBuffer = await QRCode.toBuffer(url, { width: 200 })

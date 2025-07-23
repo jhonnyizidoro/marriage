@@ -5,6 +5,7 @@ import { type getData } from '@/app/convites/page'
 import { useAction } from 'next-safe-action/hooks'
 import { type FC, useCallback, useEffect, useState } from 'react'
 
+import Checkbox from '@/components/Checkbox'
 import Input from '@/components/Input'
 import Modal from '@/components/Modal'
 import { toastify } from '@/components/Toast'
@@ -20,6 +21,7 @@ type Props = {
 const InviteModal: FC<Props> = ({ data }) => {
   const [name, setName] = useState('')
   const [person, setPerson] = useState('')
+  const [autoConfirm, setAutoConfirm] = useState(false)
   const [people, setPeople] = useState<{ name: string; id?: string }[]>([])
   const action = useAction(createOrUpdateInviteAction)
 
@@ -43,6 +45,7 @@ const InviteModal: FC<Props> = ({ data }) => {
   useEffect(() => {
     setName(data?.name || '')
     setPeople(data?.people || [])
+    setAutoConfirm(!!data?.people.some((p) => p.confirmed))
   }, [data])
 
   return (
@@ -51,7 +54,7 @@ const InviteModal: FC<Props> = ({ data }) => {
       title="Adicionar convite"
       cancelLabel="Canelar"
       okLabel={data ? 'Editar convite' : 'Criar convite'}
-      onOk={() => action.execute({ name, people, id: data?.id })}
+      onOk={() => action.execute({ name, people, id: data?.id, autoConfirm })}
     >
       <Input
         label="Nome no convite"
@@ -88,6 +91,11 @@ const InviteModal: FC<Props> = ({ data }) => {
           </button>
         ))}
       </div>
+      <Checkbox
+        label="Confirmar automaticamente"
+        onChange={setAutoConfirm}
+        checked={autoConfirm}
+      />
     </Modal>
   )
 }

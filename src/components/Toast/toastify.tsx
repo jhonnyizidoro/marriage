@@ -8,9 +8,11 @@ const toastify = ({ message }: Omit<Props, 'bottom'>) => {
   const html = renderToString(<Toast message={message} bottom={bottom} />)
   const wrapper = document.createElement('div')
   wrapper.innerHTML = html
+  wrapper.style.transition = '1s'
   document.body.append(wrapper)
   const closeBtn = wrapper.querySelector('button')
   closeBtn?.addEventListener('click', () => wrapper.remove())
+  setTimeout(() => wrapper.remove(), 5000)
 }
 
 export default toastify

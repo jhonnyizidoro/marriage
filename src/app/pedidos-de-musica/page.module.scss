@@ -1,0 +1,29 @@
+.wrapper {
+  padding-block: 80px;
+  min-height: calc(100vh - 222px);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.title {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-transform: capitalize;
+  font-size: 18px;
+}
+
+.link {
+  text-decoration: underline;
+  font-weight: 700;
+  background: transparent;
+  border: 0;
+  padding-left: 0;
+  cursor: pointer;
+}

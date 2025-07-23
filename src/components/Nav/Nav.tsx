@@ -56,8 +56,8 @@ const Nav: FC = async () => {
                 <Link className={styles.dropdownLink} href="/convidados">
                   Convidados
                 </Link>
-                <Link className={styles.dropdownLink} href="/playlist">
-                  Playlist
+                <Link className={styles.dropdownLink} href="/pedidos-de-musica">
+                  Pedidos de música
                 </Link>
                 <NavLogout className={styles.dropdownLink}>Logout</NavLogout>
               </div>

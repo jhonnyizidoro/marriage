@@ -1,0 +1,17 @@
+.form {
+  display: grid;
+  align-items: flex-end;
+  gap: 15px;
+  grid-template-columns: 1fr auto;
+  margin-bottom: 50px;
+}
+
+.button {
+  background: var(--red);
+  color: var(--background);
+  font-size: 18px;
+  padding: 14px 20px;
+  display: inline-block;
+  border: 0;
+  cursor: pointer;
+}

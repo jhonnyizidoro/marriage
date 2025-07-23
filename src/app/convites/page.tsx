@@ -4,6 +4,7 @@ import type { FC } from 'react'
 
 import Container from '@/components/Container'
 import InviteDelete from '@/components/InviteDelete'
+import InviteGenerate from '@/components/InviteGenerate'
 import InviteModal from '@/components/InviteModal'
 import TableHeader from '@/components/TableHeader'
 import TableRow from '@/components/TableRow'
@@ -31,6 +32,7 @@ export const getData = async () => {
       .map((p) => ({
         id: p.id,
         name: p.name,
+        confirmed: !!p.confirmedAt,
       })),
   }))
 }
@@ -39,32 +41,35 @@ const InvitesPage: FC<Props> = async ({ searchParams }) => {
   const id = (await searchParams).id
   const data = await getData()
   const editing = data.find((i) => i.id === id)
+  const people = data.map((d) => d.people).flat()
+  const confirmed = people.filter((p) => p.confirmed)
+  const ids = data.map((i) => i.id)
 
   return (
     <Container size="small" className={styles.wrapper}>
       <div className={styles.header}>
         <div>
           <div>
-            Convites: <strong>19</strong>
+            Convites: <strong>{data.length}</strong>
           </div>
           <div>
-            Pessoa convidadas: <strong>19</strong>
+            Pessoa convidadas: <strong>{people.length}</strong>
           </div>
           <div>
-            Pessoas confirmadas: <strong>19</strong>
+            Pessoas confirmadas: <strong>{confirmed.length}</strong>
           </div>
         </div>
         <div>
           <Link shallow replace className={styles.link} href="?modal=invite">
             Adicionar convite
           </Link>
-          <Link className={styles.link} href="#">
+          <InviteGenerate className={styles.link} ids={ids}>
             Gerar convites
-          </Link>
+          </InviteGenerate>
         </div>
       </div>
 
-      <TableHeader>Convidados</TableHeader>
+      <TableHeader>Convites</TableHeader>
       {data.map((i) => (
         <TableRow key={i.id} className={styles.row}>
           <div>
@@ -77,9 +82,9 @@ const InvitesPage: FC<Props> = async ({ searchParams }) => {
             </span>
           </div>
           <div className={styles.rowRight}>
-            <Link className={styles.rowLink} href="#">
+            <InviteGenerate className={styles.rowLink} ids={[i.id]}>
               Gerar convite
-            </Link>
+            </InviteGenerate>
             <div>
               <Link
                 href={`?modal=invite&id=${i.id}`}

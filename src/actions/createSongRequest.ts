@@ -25,7 +25,7 @@ type NoembedResponse = {
   thumbnail_url: string
 }
 
-const songRequestAction = createSafeActionClient()
+const createSongRequestAction = createSafeActionClient()
   .inputSchema(
     z.object({
       url: z.url(),
@@ -65,4 +65,4 @@ const songRequestAction = createSafeActionClient()
     revalidatePath('/pedidos-de-musica')
   })
 
-export default songRequestAction
+export default createSongRequestAction

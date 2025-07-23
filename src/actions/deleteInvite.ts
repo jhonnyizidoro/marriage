@@ -46,7 +46,7 @@ const deleteInviteAction = createSafeActionClient()
       .where('id', '=', id)
       .executeTakeFirstOrThrow()
 
-    redirect('/convidados')
+    redirect('/convites')
   })
 
 export default deleteInviteAction

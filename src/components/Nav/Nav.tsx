@@ -53,8 +53,8 @@ const Nav: FC = async () => {
             <div role="link" className={styles.dropdownWrapper}>
               Ações
               <div className={styles.dropdown}>
-                <Link className={styles.dropdownLink} href="/convidados">
-                  Convidados
+                <Link className={styles.dropdownLink} href="/convites">
+                  Convites
                 </Link>
                 <Link className={styles.dropdownLink} href="/pedidos-de-musica">
                   Pedidos de música

@@ -1,6 +1,6 @@
 'use client'
 
-import songRequestAction from '@/actions/songRequest'
+import createSongRequestAction from '@/actions/createSongRequest'
 import { useAction } from 'next-safe-action/hooks'
 import { type FC, useEffect, useState } from 'react'
 
@@ -11,7 +11,7 @@ import styles from './SongRequestForm.module.scss'
 
 const SongRequestForm: FC = () => {
   const [url, setUrl] = useState('')
-  const action = useAction(songRequestAction)
+  const action = useAction(createSongRequestAction)
 
   useEffect(() => {
     const errorMessage = action.result.serverError || action.result.data?.error

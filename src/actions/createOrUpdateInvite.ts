@@ -8,7 +8,7 @@ import z from 'zod'
 
 z.config(z.locales.pt())
 
-const inviteActon = createSafeActionClient()
+const createOrUpdateInviteAction = createSafeActionClient()
   .inputSchema(
     z.object({
       id: z.uuidv4().optional(),
@@ -67,7 +67,7 @@ const inviteActon = createSafeActionClient()
             .executeTakeFirstOrThrow(),
       ])
 
-      redirect('/convidados')
+      redirect('/convites')
     }
 
     const createdInvite = await db
@@ -81,7 +81,7 @@ const inviteActon = createSafeActionClient()
       .values(people.map((p) => ({ invite: createdInvite.id, name: p.name })))
       .execute()
 
-    redirect('/convidados')
+    redirect('/convites')
   })
 
-export default inviteActon
+export default createOrUpdateInviteAction

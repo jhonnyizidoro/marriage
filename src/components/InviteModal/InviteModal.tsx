@@ -1,7 +1,7 @@
 'use client'
 
-import inviteActon from '@/actions/invite'
-import { type getData } from '@/app/convidados/page'
+import createOrUpdateInviteAction from '@/actions/createOrUpdateInvite'
+import { type getData } from '@/app/convites/page'
 import { useAction } from 'next-safe-action/hooks'
 import { type FC, useCallback, useEffect, useState } from 'react'
 
@@ -21,7 +21,7 @@ const InviteModal: FC<Props> = ({ data }) => {
   const [name, setName] = useState('')
   const [person, setPerson] = useState('')
   const [people, setPeople] = useState<{ name: string; id?: string }[]>([])
-  const action = useAction(inviteActon)
+  const action = useAction(createOrUpdateInviteAction)
 
   const addPerson = useCallback(() => {
     setPeople((state) => [...state, { name: person }])

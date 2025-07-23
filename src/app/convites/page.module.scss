@@ -16,6 +16,11 @@
   text-decoration: underline;
   display: block;
   text-align: right;
+  background: transparent;
+  border: 0;
+  padding-right: 0;
+  width: 100%;
+  cursor: pointer;
 }
 
 .row {
@@ -46,6 +51,10 @@
   font-size: 18px;
   font-weight: 700;
   text-decoration: underline;
+  border: 0;
+  background: transparent;
+  padding-right: 0;
+  cursor: pointer;
 }
 
 .rowButton {

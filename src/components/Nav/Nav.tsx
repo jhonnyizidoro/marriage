@@ -48,6 +48,20 @@ const Nav: FC = async () => {
             </Link>
           )}
 
+          {accessToken && (
+            <div role="link" className={styles.dropdownLink}>
+              Ações
+              <div className={styles.dropdown}>
+                <Link className={styles.link} href="/convidados">
+                  Convidados
+                </Link>
+                <Link className={styles.link} href="/playlist">
+                  Playlist
+                </Link>
+              </div>
+            </div>
+          )}
+
           <Link className={styles.button} href={env.storeUrl} target="_blank">
             Lisa de compras
           </Link>

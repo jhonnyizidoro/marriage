@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import type { FC, MouseEvent, PropsWithChildren } from 'react'
+import { type FC, type PropsWithChildren, useCallback, useEffect } from 'react'
 
 import CloseIcon from '@/assets/icons/CloseIcon'
 
@@ -10,7 +10,7 @@ type Props = PropsWithChildren<{
   title: string
   cancelLabel: string
   okLabel: string
-  onOk: (e: MouseEvent<HTMLButtonElement>) => void
+  onOk: () => void
   param: string
 }>
 
@@ -26,7 +26,29 @@ const Modal: FC<Props> = ({
   const searchParams = useSearchParams()
   const { replace } = useRouter()
   const isOpen = searchParams.get('modal') === param
-  const close = () => replace(pathname)
+
+  const close = useCallback(() => {
+    replace(pathname)
+  }, [pathname, replace])
+
+  const handleKeyEvents = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        onOk()
+      } else if (e.key === 'Escape') {
+        replace(pathname)
+      }
+    },
+    [onOk, pathname, replace]
+  )
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyEvents)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyEvents)
+    }
+  }, [handleKeyEvents])
 
   if (!isOpen) {
     return

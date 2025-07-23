@@ -18,9 +18,12 @@
   height: auto;
 }
 
-.buttonWrapper {
+.right {
   flex-basis: 430px;
-  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 35px;
 }
 
 .button {

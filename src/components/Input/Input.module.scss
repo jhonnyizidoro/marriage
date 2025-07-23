@@ -1,0 +1,17 @@
+.input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: var(--lighter-gray);
+  padding: 14px;
+  border: 1px solid transparent;
+  transition: 0.2s;
+
+  &:focus-visible {
+    border: 1px solid var(--gray);
+  }
+}
+
+.error {
+  color: var(--red);
+}

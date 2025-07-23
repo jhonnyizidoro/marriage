@@ -5,6 +5,7 @@ const schema = z.object({
   storeUrl: z.string(),
   marriageDate: z.coerce.date(),
   address: z.string(),
+  appPassword: z.string().default(''),
 })
 
 const env = schema.parse({
@@ -12,6 +13,7 @@ const env = schema.parse({
   storeUrl: process.env.NEXT_PUBLIC_STORE_URL,
   marriageDate: process.env.NEXT_PUBLIC_MARRIAGE_DATE,
   address: process.env.NEXT_PUBLIC_ADDRESS,
+  appPassword: process.env.APP_PASSWORD,
 })
 
 export default env

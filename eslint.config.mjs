@@ -20,7 +20,7 @@ const eslintConfig = [
   {
     rules: {
       'prettier/prettier': 'error',
-      'no-unused-vars': 'error',
+      '@typescript-eslint/no-unused-vars': 'error',
       'react/jsx-curly-brace-presence': 'error',
       'react/jsx-boolean-value': 'error',
       'react/self-closing-comp': 'error',

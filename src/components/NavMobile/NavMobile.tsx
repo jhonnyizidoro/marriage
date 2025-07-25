@@ -23,7 +23,6 @@ const NavMobile: FC<PropsWithChildren> = ({ children }) => {
   useEffect(() => {
     const close = () => setOpen(false)
     const links = ref.current?.querySelectorAll('a') || []
-    console.log(links)
     links.forEach((l) => l.addEventListener('click', close))
     return () => links.forEach((l) => l.removeEventListener('click', close))
   }, [])

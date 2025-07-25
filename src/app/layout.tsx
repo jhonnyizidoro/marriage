@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import dynamic from 'next/dynamic'
 import { PropsWithChildren } from 'react'
 
 import Footer from '@/components/Footer'
@@ -8,8 +7,6 @@ import Nav from '@/components/Nav'
 import '@/assets/app.scss'
 import moneta from '@/assets/fonts/moneta'
 import '@/assets/reset.scss'
-
-const LoginModal = dynamic(() => import('@/components/LoginModal'))
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -22,7 +19,6 @@ const RootLayout = ({ children }: PropsWithChildren) => (
       <Nav />
       {children}
       <Footer />
-      <LoginModal />
     </body>
   </html>
 )

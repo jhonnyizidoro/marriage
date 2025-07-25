@@ -43,61 +43,63 @@ const Countdown: FC = () => {
   }, [])
 
   return (
-    <Container className={styles.container}>
-      <Image
-        className={styles.border}
-        src={Border}
-        alt=""
-        width={200}
-        height={200}
-      />
-      <Image
-        className={styles.border}
-        src={Border}
-        alt=""
-        width={200}
-        height={200}
-      />
-      <Image
-        className={styles.border}
-        src={Border}
-        alt=""
-        width={200}
-        height={200}
-      />
-      <Image
-        className={styles.border}
-        src={Border}
-        alt=""
-        width={200}
-        height={200}
-      />
+    <div className={styles.wrapper}>
+      <Container className={styles.container}>
+        <Image
+          className={styles.border}
+          src={Border}
+          alt=""
+          width={200}
+          height={200}
+        />
+        <Image
+          className={styles.border}
+          src={Border}
+          alt=""
+          width={200}
+          height={200}
+        />
+        <Image
+          className={styles.border}
+          src={Border}
+          alt=""
+          width={200}
+          height={200}
+        />
+        <Image
+          className={styles.border}
+          src={Border}
+          alt=""
+          width={200}
+          height={200}
+        />
 
-      <h2 className={styles.title}>
-        Estamos contanto os
-        <br />
-        segundos
-      </h2>
+        <h2 className={styles.title}>
+          Estamos contanto os
+          <br />
+          segundos
+        </h2>
 
-      <div className={styles.list}>
-        <div className={styles.item}>
-          <strong className={styles.number}>{data.days}</strong>
-          <span className={styles.label}>Dias</span>
+        <div className={styles.list}>
+          <div className={styles.item}>
+            <strong className={styles.number}>{data.days}</strong>
+            <span className={styles.label}>Dias</span>
+          </div>
+          <div className={styles.item}>
+            <strong className={styles.number}>{data.hours}</strong>
+            <span className={styles.label}>Horas</span>
+          </div>
+          <div className={styles.item}>
+            <strong className={styles.number}>{data.minutes}</strong>
+            <span className={styles.label}>Minutos</span>
+          </div>
+          <div className={styles.item}>
+            <strong className={styles.number}>{data.seconds}</strong>
+            <span className={styles.label}>Segundos</span>
+          </div>
         </div>
-        <div className={styles.item}>
-          <strong className={styles.number}>{data.hours}</strong>
-          <span className={styles.label}>Horas</span>
-        </div>
-        <div className={styles.item}>
-          <strong className={styles.number}>{data.minutes}</strong>
-          <span className={styles.label}>Minutos</span>
-        </div>
-        <div className={styles.item}>
-          <strong className={styles.number}>{data.seconds}</strong>
-          <span className={styles.label}>Segundos</span>
-        </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   )
 }
 

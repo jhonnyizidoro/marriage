@@ -11,6 +11,7 @@ import Modal from '@/components/Modal'
 import { toastify } from '@/components/Toast'
 
 import CloseIcon from '@/assets/icons/CloseIcon'
+import PlusIcon from '@/assets/icons/PlusIcon'
 
 import styles from './InviteModal.module.scss'
 
@@ -75,8 +76,13 @@ const InviteModal: FC<Props> = ({ data }) => {
               : ''
           }
         />
-        <button type="button" onClick={addPerson} className={styles.button}>
-          Adicionar
+        <button
+          type="button"
+          onClick={addPerson}
+          className={styles.button}
+          aria-label="Adicionar"
+        >
+          <PlusIcon width={20} />
         </button>
       </div>
       <div className={styles.list}>

@@ -2,15 +2,25 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 30px;
+
+  @media (min-width: 1001px) {
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 1000px) {
+    margin-bottom: 20px;
+  }
 }
 
 .detail {
-  width: 125px;
   height: auto;
 
   &:last-child {
     rotate: 180deg;
+  }
+
+  @media (max-width: 1000px) {
+    width: 90px;
   }
 }
 

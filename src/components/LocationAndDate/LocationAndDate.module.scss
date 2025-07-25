@@ -1,12 +1,27 @@
 .wrapper {
   background: var(--light-red);
-  padding-block: 80px;
+
+  @media (min-width: 1001px) {
+    padding-block: 80px;
+  }
+
+  @media (max-width: 1000px) {
+    padding-block: 40px;
+    margin-top: 40px;
+  }
 }
 
 .title {
   font-weight: 400;
   text-align: center;
-  font-size: 64px;
+
+  @media (min-width: 1001px) {
+    font-size: 64px;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 54px;
+  }
 }
 
 .text {
@@ -15,43 +30,62 @@
 }
 
 .links {
-  display: flex;
-  justify-content: center;
-  gap: 70px;
   margin-block: 50px 70px;
+
+  @media (min-width: 1001px) {
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+  }
 }
 
 .link {
   font-weight: 700;
   font-size: 18px;
-  display: inline-flex;
   gap: 15px;
   align-items: center;
+  display: flex;
+
+  @media (max-width: 1000px) {
+    justify-content: center;
+    margin-top: 20px;
+  }
 }
 
 .iframeWrapper {
   margin-bottom: 50px;
   position: relative;
-
   filter: drop-shadow(0 0 0 2px red);
 }
 
 .iframe {
-  --offset: 3.5%;
-
   width: 100%;
-  aspect-ratio: 2;
   border: 0;
+
   clip-path: polygon(
-    var(--offset) 0,
-    calc(100% - var(--offset)) 0,
-    100% calc(var(--offset) * 2),
-    100% calc(100% - var(--offset) * 2),
-    calc(100% - var(--offset)) 100%,
-    var(--offset) 100%,
-    0 calc(100% - var(--offset) * 2),
-    0 calc(var(--offset) * 2)
+    var(--offset-x) 0,
+    calc(100% - var(--offset-x)) 0,
+    100% var(--offset-y),
+    100% calc(100% - var(--offset-y)),
+    calc(100% - var(--offset-x)) 100%,
+    var(--offset-x) 100%,
+    0 calc(100% - var(--offset-y)),
+    0 var(--offset-y)
   );
+
+  @media (min-width: 1001px) {
+    --offset-x: 3.5%;
+    --offset-y: 7%;
+
+    aspect-ratio: 2;
+  }
+
+  @media (max-width: 1000px) {
+    --offset-x: 7%;
+    --offset-y: 7%;
+
+    aspect-ratio: 1;
+  }
 }
 
 .agendaItem {

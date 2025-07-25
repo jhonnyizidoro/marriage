@@ -1,30 +1,49 @@
 .wrapper {
   overflow: hidden;
-  margin-block: 160px;
   position: relative;
 
   &::after {
     content: '';
     width: 40%;
     pointer-events: none;
-    height: 100%;
     background: linear-gradient(to right, transparent, var(--background));
     display: block;
     position: absolute;
     right: 0;
-    top: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  @media (min-width: 1001px) {
+    margin-block: 160px;
+
+    &::after {
+      height: 100%;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    margin-block: 40px 80px;
+
+    &::after {
+      height: 250px;
+    }
   }
 }
 
 .container {
-  display: flex;
-  gap: 100px;
-  align-items: center;
+  @media (min-width: 1001px) {
+    display: flex;
+    gap: 100px;
+    align-items: center;
+  }
 }
 
 .content {
-  flex-basis: 50%;
-  flex-shrink: 0;
+  @media (min-width: 1001px) {
+    flex-basis: 50%;
+    flex-shrink: 0;
+  }
 }
 
 .title {
@@ -48,12 +67,28 @@
 
 .list {
   display: flex;
-  gap: 45px;
+  margin-top: 50px;
+
+  @media (min-width: 1001px) {
+    gap: 45px;
+  }
+
+  @media (max-width: 1000px) {
+    gap: 20px;
+  }
 }
 
 .item {
-  width: 250px;
   background: var(--light-orange);
+  flex-shrink: 0;
+
+  @media (min-width: 1001px) {
+    width: 250px;
+  }
+
+  @media (max-width: 1000px) {
+    width: 150px;
+  }
 }
 
 .image {
@@ -63,13 +98,30 @@
 }
 
 .itemContent {
-  padding: 15px;
+  @media (min-width: 1001px) {
+    padding: 15px;
+  }
+
+  @media (max-width: 1000px) {
+    padding: 9px;
+  }
 }
 
 .itemTitle {
   color: var(--red);
   margin-block: 5px 0;
-  font-size: 22px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  @media (min-width: 1001px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 18px;
+  }
 }
 
 .itemPrice {

@@ -1,12 +1,22 @@
 .container {
-  display: grid;
-  grid-template-columns: auto 400px auto;
-  gap: min(8vw, 140px);
-  margin-block: 100px;
+  @media (min-width: 1001px) {
+    display: grid;
+    grid-template-columns: auto 400px auto;
+    gap: min(8vw, 140px);
+    margin-block: 100px;
+  }
+
+  @media (max-width: 1000px) {
+    margin-block: 100px 50px;
+  }
 }
 
 .left {
   position: relative;
+
+  @media (max-width: 1000px) {
+    height: 110vw;
+  }
 }
 
 .image {
@@ -30,28 +40,65 @@
 }
 
 .center {
-  padding-block: min(80px, 4vw);
   text-align: center;
+
+  @media (min-width: 1001px) {
+    padding-block: min(80px, 4vw);
+  }
+
+  @media (max-width: 1000px) {
+    padding-block: 50px;
+  }
 }
 
 .titleHeader {
-  font-size: 90px;
   font-weight: 300;
+
+  @media (min-width: 1001px) {
+    font-size: 90px;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 70px;
+  }
 }
 
 .titleName1 {
-  font-size: 120px;
   font-weight: 400;
+
+  @media (min-width: 1001px) {
+    font-size: 120px;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 96px;
+  }
 }
 
 .titleAnd {
   font-size: 100px;
   font-weight: 300;
+
+  @media (min-width: 1001px) {
+    font-size: 100px;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 50px;
+  }
 }
 
 .titleName2 {
   font-size: 130px;
   font-weight: 400;
+
+  @media (min-width: 1001px) {
+    font-size: 130px;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 100px;
+  }
 }
 
 .subtitle {
@@ -87,6 +134,10 @@
 
 .right {
   position: relative;
+
+  @media (max-width: 1000px) {
+    height: 110vw;
+  }
 }
 
 .image3 {

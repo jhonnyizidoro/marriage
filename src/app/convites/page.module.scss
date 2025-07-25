@@ -1,6 +1,13 @@
 .wrapper {
-  padding-block: 80px;
   min-height: calc(100vh - 222px);
+
+  @media (min-width: 1001px) {
+    padding-block: 80px;
+  }
+
+  @media (max-width: 1000px) {
+    padding-block: 150px 80px;
+  }
 }
 
 .header {

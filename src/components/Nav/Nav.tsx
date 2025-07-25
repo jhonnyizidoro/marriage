@@ -5,8 +5,8 @@ import Link from 'next/link'
 import type { FC } from 'react'
 
 import Container from '@/components/Container'
-import LoginModal from '@/components/LoginModal'
 import NavLogout from '@/components/NavLogout'
+import NavMobile from '@/components/NavMobile'
 
 import Logo from './images/logo.png'
 
@@ -17,7 +17,7 @@ const Nav: FC = async () => {
   const accessToken = cookieStore.get('accessToken')
 
   return (
-    <nav>
+    <NavMobile>
       <Container className={styles.container}>
         <div className={styles.links}>
           <Link className={styles.link} href="/">
@@ -50,8 +50,10 @@ const Nav: FC = async () => {
           )}
 
           {accessToken && (
-            <div role="link" className={styles.dropdownWrapper}>
-              Ações
+            <div className={styles.dropdownWrapper}>
+              <span className={styles.dropdownLabel} role="link">
+                Ações
+              </span>
               <div className={styles.dropdown}>
                 <Link className={styles.dropdownLink} href="/convites">
                   Convites
@@ -69,9 +71,7 @@ const Nav: FC = async () => {
           </Link>
         </div>
       </Container>
-
-      {!accessToken && <LoginModal />}
-    </nav>
+    </NavMobile>
   )
 }
 

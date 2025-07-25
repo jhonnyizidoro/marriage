@@ -26,7 +26,7 @@ const metadata: Metadata = {
     url: env.domain,
     siteName: 'Casamento Jhonny & Nathália',
     images: [
-      { url: `${env.domain}/seo/og-image.jpg`, width: 1024, height: 1024 },
+      { url: `${env.domain}/seo/og-image.png`, width: 1024, height: 1024 },
     ],
     locale: 'pt_BR',
     type: 'website',

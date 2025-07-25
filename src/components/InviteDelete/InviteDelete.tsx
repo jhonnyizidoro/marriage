@@ -4,6 +4,7 @@ import deleteInviteAction from '@/actions/deleteInvite'
 import { useAction } from 'next-safe-action/hooks'
 import { type FC, PropsWithChildren, useEffect } from 'react'
 
+import Loader from '@/components/Loader'
 import { toastify } from '@/components/Toast'
 
 type Props = PropsWithChildren<{
@@ -23,13 +24,16 @@ const InviteDelete: FC<Props> = ({ className, children, id }) => {
   }, [action.result])
 
   return (
-    <button
-      className={className}
-      type="button"
-      onClick={() => action.execute({ id })}
-    >
-      {children}
-    </button>
+    <>
+      <button
+        className={className}
+        type="button"
+        onClick={() => action.execute({ id })}
+      >
+        {children}
+      </button>
+      {action.status === 'executing' && <Loader />}
+    </>
   )
 }
 

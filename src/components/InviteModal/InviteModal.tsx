@@ -55,6 +55,7 @@ const InviteModal: FC<Props> = ({ data }) => {
       cancelLabel="Canelar"
       okLabel={data ? 'Editar convite' : 'Criar convite'}
       onOk={() => action.execute({ name, people, id: data?.id, autoConfirm })}
+      isLoading={action.status === 'executing'}
     >
       <Input
         label="Nome no convite"

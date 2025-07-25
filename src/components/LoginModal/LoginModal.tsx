@@ -27,6 +27,7 @@ const LoginModal: FC = () => {
       cancelLabel="Canelar"
       okLabel="Fazer login"
       onOk={() => action.execute({ password })}
+      isLoading={action.status === 'executing'}
     >
       <Input
         label="Senha"

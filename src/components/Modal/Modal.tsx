@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { type FC, type PropsWithChildren, useCallback, useEffect } from 'react'
 
+import Loader from '@/components/Loader'
+
 import CloseIcon from '@/assets/icons/CloseIcon'
 
 import styles from './Modal.module.scss'
@@ -12,6 +14,7 @@ type Props = PropsWithChildren<{
   okLabel: string
   onOk: () => void
   param: string
+  isLoading?: boolean
 }>
 
 const Modal: FC<Props> = ({
@@ -21,6 +24,7 @@ const Modal: FC<Props> = ({
   okLabel,
   onOk,
   title,
+  isLoading,
 }) => {
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -55,6 +59,7 @@ const Modal: FC<Props> = ({
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
+        {isLoading && <Loader />}
         <Link
           href={pathname}
           shallow

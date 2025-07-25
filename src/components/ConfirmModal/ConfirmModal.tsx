@@ -51,6 +51,7 @@ const ConfirmModal: FC<Props> = ({ data }) => {
       cancelLabel="Deixar para depois"
       okLabel={data ? 'Editar convite' : 'Criar convite'}
       onOk={() => action.execute({ people: confirmed, id: data?.id })}
+      isLoading={action.status === 'executing'}
     >
       <p className={styles.text}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quas,

@@ -20,21 +20,15 @@ const InviteGenerate: FC<Props> = ({ className, children, ids }) => {
 
     if (errorMessage) {
       toastify({ message: errorMessage })
-    } else {
-      action.result.data?.forEach(({ base64, name }) => {
-        const [prefix, data] = base64.split(',')
-        const mime = prefix?.match(/:(.*?);/)?.[1] ?? 'image/jpeg'
-        const blob = new Blob(
-          [Uint8Array.from(atob(data || ''), (c) => c.charCodeAt(0))],
-          { type: mime }
-        )
-        const url = URL.createObjectURL(blob)
-        const a = document.createElement('a')
-        a.href = url
-        a.download = `convite-${name}.jpg`
-        a.click()
-        URL.revokeObjectURL(url)
-      })
+    } else if (action.result.data) {
+      const bytes = atob(action.result.data)
+      const blob = new Blob([Uint8Array.from(bytes, (c) => c.charCodeAt(0))])
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'convites.zip'
+      a.click()
+      URL.revokeObjectURL(url)
     }
   }, [action.result])
 

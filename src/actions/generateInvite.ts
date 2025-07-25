@@ -3,6 +3,7 @@
 import { db } from '@/db/db'
 import env from '@/env'
 import { Jimp } from 'jimp'
+import JSZip from 'jszip'
 import { createSafeActionClient } from 'next-safe-action'
 import { cookies } from 'next/headers'
 import { join } from 'node:path'
@@ -15,10 +16,12 @@ const generateInvite = async ({
   id,
   name,
   template,
+  zip,
 }: {
   template: Awaited<ReturnType<typeof Jimp.read>>
   id: string
   name: string
+  zip: JSZip
 }) => {
   const url = `${env.domain}?modal=confirm&id=${id}`
   const x = template.width - 200 - 20
@@ -26,8 +29,8 @@ const generateInvite = async ({
   const qrBuffer = await QRCode.toBuffer(url, { width: 200 })
   const qrImage = await Jimp.read(qrBuffer)
   template.composite(qrImage, x, y)
-  const base64 = await template.getBase64('image/jpeg')
-  return { base64, name }
+  const buffer = await template.getBuffer('image/jpeg')
+  zip.file(`${name}.jpg`, buffer)
 }
 
 const generateInviteAction = createSafeActionClient()
@@ -48,6 +51,7 @@ const generateInviteAction = createSafeActionClient()
       .where('id', '=', accessToken)
       .executeTakeFirstOrThrow()
 
+    const zip = new JSZip()
     const template = await Jimp.read(templateSrc)
     const invites = await db
       .selectFrom('invites')
@@ -55,15 +59,15 @@ const generateInviteAction = createSafeActionClient()
       .selectAll()
       .execute()
 
-    return await Promise.all(
+    await Promise.all(
       invites.map((i) =>
-        generateInvite({
-          template,
-          id: i.id,
-          name: i.name,
-        })
+        generateInvite({ zip, template, id: i.id, name: i.name })
       )
     )
+
+    const zipBuffer = await zip.generateAsync({ type: 'nodebuffer' })
+
+    return zipBuffer.toString('base64')
   })
 
 export default generateInviteAction

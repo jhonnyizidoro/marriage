@@ -5,6 +5,7 @@ import Link from 'next/link'
 import type { FC } from 'react'
 
 import Container from '@/components/Container'
+import FloatingButton from '@/components/FloatingButton'
 import LoginModal from '@/components/LoginModal'
 import NavLogout from '@/components/NavLogout'
 import NavMobile from '@/components/NavMobile'
@@ -20,6 +21,7 @@ const Nav: FC = async () => {
   return (
     <>
       {!accessToken && <LoginModal />}
+      <FloatingButton />
       <NavMobile>
         <Container className={styles.container}>
           <div className={styles.links}>
@@ -73,7 +75,7 @@ const Nav: FC = async () => {
             )}
 
             <Link className={styles.button} href={env.storeUrl} target="_blank">
-              Lisa de compras
+              Lista de presentes
             </Link>
           </div>
         </Container>

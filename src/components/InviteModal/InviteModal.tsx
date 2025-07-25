@@ -3,6 +3,7 @@
 import createOrUpdateInviteAction from '@/actions/createOrUpdateInvite'
 import getInvitesData from '@/api/getInvitesData'
 import { useAction } from 'next-safe-action/hooks'
+import { useSearchParams } from 'next/navigation'
 import { type FC, useCallback, useEffect, useState } from 'react'
 
 import Checkbox from '@/components/Checkbox'
@@ -25,6 +26,7 @@ const InviteModal: FC<Props> = ({ data }) => {
   const [autoConfirm, setAutoConfirm] = useState(false)
   const [people, setPeople] = useState<{ name: string; id?: string }[]>([])
   const action = useAction(createOrUpdateInviteAction)
+  const searchParams = useSearchParams()
 
   const addPerson = useCallback(() => {
     setPeople((state) => [...state, { name: person }])
@@ -47,7 +49,7 @@ const InviteModal: FC<Props> = ({ data }) => {
     setName(data?.name || '')
     setPeople(data?.people || [])
     setAutoConfirm(!!data?.people.some((p) => p.confirmed))
-  }, [data])
+  }, [data, searchParams])
 
   return (
     <Modal

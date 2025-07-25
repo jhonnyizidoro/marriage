@@ -1,0 +1,52 @@
+.button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background: var(--red);
+  color: var(--background);
+  z-index: 3;
+  padding: 15px 20px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  white-space: nowrap;
+  overflow: hidden;
+  direction: rtl;
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: -4px;
+  animation: hideText 1s 4.3s forwards;
+}
+
+.icon {
+  flex-shrink: 0;
+  animation: rotateIcon 1.3s 4s forwards;
+}
+
+@keyframes hideText {
+  from {
+    max-width: 127px;
+  }
+  to {
+    max-width: 0;
+    margin-left: 0;
+  }
+}
+
+@keyframes rotateIcon {
+  0% {
+    rotate: 0;
+  }
+  20% {
+    rotate: -30deg;
+  }
+  90% {
+    rotate: 0;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}

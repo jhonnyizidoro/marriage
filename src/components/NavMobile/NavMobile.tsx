@@ -2,8 +2,13 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
-import { type FC, type PropsWithChildren, useEffect, useState } from 'react'
+import {
+  type FC,
+  type PropsWithChildren,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 import Container from '@/components/Container'
 
@@ -13,11 +18,15 @@ import styles from './NavMobile.module.scss'
 
 const NavMobile: FC<PropsWithChildren> = ({ children }) => {
   const [open, setOpen] = useState(false)
-  const searchParams = useSearchParams()
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setOpen(false)
-  }, [searchParams])
+    const close = () => setOpen(false)
+    const links = ref.current?.querySelectorAll('a') || []
+    console.log(links)
+    links.forEach((l) => l.addEventListener('click', close))
+    return () => links.forEach((l) => l.removeEventListener('click', close))
+  }, [])
 
   return (
     <>
@@ -41,7 +50,7 @@ const NavMobile: FC<PropsWithChildren> = ({ children }) => {
             <div className={styles.hamburgerMenu} data-open={open} />
           </button>
         </Container>
-        <div className={styles.content} data-open={open}>
+        <div className={styles.content} data-open={open} ref={ref}>
           {children}
         </div>
       </nav>

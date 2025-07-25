@@ -4,9 +4,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {
   type FC,
+  MouseEvent,
   type PropsWithChildren,
-  useEffect,
-  useRef,
+  useCallback,
   useState,
 } from 'react'
 
@@ -18,13 +18,14 @@ import styles from './NavMobile.module.scss'
 
 const NavMobile: FC<PropsWithChildren> = ({ children }) => {
   const [open, setOpen] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const close = () => setOpen(false)
-    const links = ref.current?.querySelectorAll('a') || []
-    links.forEach((l) => l.addEventListener('click', close))
-    return () => links.forEach((l) => l.removeEventListener('click', close))
+  const handleClick = useCallback((e: MouseEvent<HTMLDivElement>) => {
+    if (
+      e.target instanceof HTMLElement &&
+      e.target.tagName.toLowerCase() === 'a'
+    ) {
+      setOpen(false)
+    }
   }, [])
 
   return (
@@ -49,7 +50,7 @@ const NavMobile: FC<PropsWithChildren> = ({ children }) => {
             <div className={styles.hamburgerMenu} data-open={open} />
           </button>
         </Container>
-        <div className={styles.content} data-open={open} ref={ref}>
+        <div className={styles.content} data-open={open} onClick={handleClick}>
           {children}
         </div>
       </nav>

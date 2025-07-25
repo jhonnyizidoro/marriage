@@ -2,14 +2,14 @@
   margin-inline: auto;
 
   &[data-size='large'] {
-    width: min(1640px, 95%);
+    width: min(1640px, 92%);
   }
 
   &[data-size='medium'] {
-    width: min(900px, 95%);
+    width: min(900px, 92%);
   }
 
   &[data-size='small'] {
-    width: min(430px, 95%);
+    width: min(430px, 92%);
   }
 }

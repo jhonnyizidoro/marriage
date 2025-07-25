@@ -11,6 +11,7 @@
   padding: 14px;
   border: 1px solid transparent;
   transition: 0.2s;
+  border-radius: 0;
 
   &:focus-visible {
     border: 1px solid var(--gray);

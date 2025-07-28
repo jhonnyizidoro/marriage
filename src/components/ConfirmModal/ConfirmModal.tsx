@@ -49,7 +49,7 @@ const ConfirmModal: FC<Props> = ({ data }) => {
       param="confirm"
       title="Confirme sua presença"
       cancelLabel="Deixar para depois"
-      okLabel={data ? 'Editar convite' : 'Criar convite'}
+      okLabel="Confirmar"
       onOk={() => action.execute({ people: confirmed, id: data?.id })}
       isLoading={action.status === 'executing'}
     >

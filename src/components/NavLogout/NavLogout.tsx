@@ -2,7 +2,7 @@
 
 import logoutAction from '@/actions/logout'
 import { useAction } from 'next-safe-action/hooks'
-import { type FC, PropsWithChildren, useEffect } from 'react'
+import { type FC, PropsWithChildren } from 'react'
 
 import Loader from '@/components/Loader'
 import { toastify } from '@/components/Toast'
@@ -12,15 +12,9 @@ type Props = PropsWithChildren<{
 }>
 
 const NavLogout: FC<Props> = ({ className, children }) => {
-  const action = useAction(logoutAction)
-
-  useEffect(() => {
-    const errorMessage = action.result.serverError
-
-    if (errorMessage) {
-      toastify({ message: errorMessage })
-    }
-  }, [action.result])
+  const action = useAction(logoutAction, {
+    onError: ({ error }) => toastify({ message: error.serverError }),
+  })
 
   return (
     <>

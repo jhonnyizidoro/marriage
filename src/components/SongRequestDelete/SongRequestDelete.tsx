@@ -2,7 +2,7 @@
 
 import deleteSongRequestAction from '@/actions/deleteSongRequest'
 import { useAction } from 'next-safe-action/hooks'
-import { type FC, type PropsWithChildren, useEffect } from 'react'
+import { type FC, type PropsWithChildren } from 'react'
 
 import Loader from '@/components/Loader'
 import { toastify } from '@/components/Toast'
@@ -13,15 +13,9 @@ type Props = PropsWithChildren<{
 }>
 
 const SongRequestDelete: FC<Props> = ({ children, id, className }) => {
-  const action = useAction(deleteSongRequestAction)
-
-  useEffect(() => {
-    const errorMessage = action.result.serverError
-
-    if (errorMessage) {
-      toastify({ message: errorMessage })
-    }
-  }, [action.result])
+  const action = useAction(deleteSongRequestAction, {
+    onError: ({ error }) => toastify({ message: error.serverError }),
+  })
 
   return (
     <>

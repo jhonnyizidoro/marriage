@@ -1,11 +1,11 @@
 import { renderToString } from 'react-dom/server'
 
-import Toast, { Props } from '@/components/Toast'
+import Toast from '@/components/Toast'
 
-const toastify = ({ message }: Omit<Props, 'bottom'>) => {
+const toastify = ({ message }: { message?: string }) => {
   const activeToasts = document.querySelectorAll('.__TOAST__')
   const bottom = (activeToasts.length + 1) * 10
-  const html = renderToString(<Toast message={message} bottom={bottom} />)
+  const html = renderToString(<Toast message={message || ''} bottom={bottom} />)
   const wrapper = document.createElement('div')
   wrapper.innerHTML = html
   wrapper.style.transition = '1s'

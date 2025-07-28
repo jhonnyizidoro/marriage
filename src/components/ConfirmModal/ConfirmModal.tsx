@@ -17,7 +17,9 @@ type Props = {
 
 const ConfirmModal: FC<Props> = ({ data }) => {
   const [confirmed, setConfirmed] = useState<string[]>([])
-  const action = useAction(confirmInviteAction)
+  const action = useAction(confirmInviteAction, {
+    onError: ({ error }) => toastify({ message: error.serverError }),
+  })
 
   const toggleConfirmation = useCallback((id: string) => {
     setConfirmed((state) =>
@@ -29,11 +31,10 @@ const ConfirmModal: FC<Props> = ({ data }) => {
 
   useEffect(() => {
     const errorMessage =
-      action.result.serverError ||
-      (action.result.validationErrors?.people &&
+      action.result.validationErrors?.people &&
       '_errors' in action.result.validationErrors?.people
         ? action.result.validationErrors?.people._errors?.[0]
-        : '')
+        : ''
 
     if (errorMessage) {
       toastify({ message: errorMessage })

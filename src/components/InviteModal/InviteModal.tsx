@@ -25,8 +25,10 @@ const InviteModal: FC<Props> = ({ data }) => {
   const [person, setPerson] = useState('')
   const [autoConfirm, setAutoConfirm] = useState(false)
   const [people, setPeople] = useState<{ name: string; id?: string }[]>([])
-  const action = useAction(createOrUpdateInviteAction)
   const searchParams = useSearchParams()
+  const action = useAction(createOrUpdateInviteAction, {
+    onError: ({ error }) => toastify({ message: error.serverError }),
+  })
 
   const addPerson = useCallback(() => {
     setPeople((state) => [...state, { name: person }])
@@ -36,14 +38,6 @@ const InviteModal: FC<Props> = ({ data }) => {
   const removePerson = useCallback((person: string) => {
     setPeople((state) => state.filter((p) => p.name !== person))
   }, [])
-
-  useEffect(() => {
-    const errorMessage = action.result.serverError
-
-    if (errorMessage) {
-      toastify({ message: errorMessage })
-    }
-  }, [action.result])
 
   useEffect(() => {
     setName(data?.name || '')
@@ -70,6 +64,7 @@ const InviteModal: FC<Props> = ({ data }) => {
         <Input
           label="Adicionar convidado"
           onChange={setPerson}
+          onEnterPress={addPerson}
           value={person}
           error={
             action.result.validationErrors?.people &&

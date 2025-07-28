@@ -1,15 +1,16 @@
 'use server'
 
+import createAction from '@/actions/createAction'
+import createActionError from '@/actions/createActionError'
 import { db } from '@/db/db'
 import env from '@/env'
-import { createSafeActionClient } from 'next-safe-action'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import z from 'zod'
 
 z.config(z.locales.pt())
 
-const loginAction = createSafeActionClient()
+const loginAction = createAction
   .inputSchema(
     z.object({
       password: z.string().min(1),
@@ -19,7 +20,7 @@ const loginAction = createSafeActionClient()
     const { password } = parsedInput
 
     if (password !== env.appPassword) {
-      return { error: 'Senha incorreta' }
+      throw createActionError('Senha incorreta')
     }
 
     const cookieStore = await cookies()
@@ -29,7 +30,7 @@ const loginAction = createSafeActionClient()
       .returning('id')
       .executeTakeFirstOrThrow()
 
-    cookieStore.set('accessToken', session.id)
+    cookieStore.set('accessToken', session.id, { maxAge: 60 * 60 * 24 * 7 })
     redirect('/')
   })
 

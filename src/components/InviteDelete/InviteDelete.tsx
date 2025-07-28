@@ -2,7 +2,7 @@
 
 import deleteInviteAction from '@/actions/deleteInvite'
 import { useAction } from 'next-safe-action/hooks'
-import { type FC, PropsWithChildren, useEffect } from 'react'
+import { type FC, PropsWithChildren } from 'react'
 
 import Loader from '@/components/Loader'
 import { toastify } from '@/components/Toast'
@@ -13,15 +13,9 @@ type Props = PropsWithChildren<{
 }>
 
 const InviteDelete: FC<Props> = ({ className, children, id }) => {
-  const action = useAction(deleteInviteAction)
-
-  useEffect(() => {
-    const errorMessage = action.result.serverError
-
-    if (errorMessage) {
-      toastify({ message: errorMessage })
-    }
-  }, [action.result])
+  const action = useAction(deleteInviteAction, {
+    onError: ({ error }) => toastify({ message: error.serverError }),
+  })
 
   return (
     <>

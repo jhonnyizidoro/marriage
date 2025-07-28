@@ -1,14 +1,14 @@
 'use server'
 
+import createAction from '@/actions/createAction'
 import { db } from '@/db/db'
-import { createSafeActionClient } from 'next-safe-action'
 import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
 import z from 'zod'
 
 z.config(z.locales.pt())
 
-const deleteSongRequestAction = createSafeActionClient()
+const deleteSongRequestAction = createAction
   .inputSchema(
     z.object({
       id: z.uuidv4(),

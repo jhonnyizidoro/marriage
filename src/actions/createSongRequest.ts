@@ -1,7 +1,8 @@
 'use server'
 
+import createAction from '@/actions/createAction'
+import createActionError from '@/actions/createActionError'
 import { db } from '@/db/db'
-import { createSafeActionClient } from 'next-safe-action'
 import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
 import z from 'zod'
@@ -25,7 +26,7 @@ type NoembedResponse = {
   thumbnail_url: string
 }
 
-const createSongRequestAction = createSafeActionClient()
+const createSongRequestAction = createAction
   .inputSchema(
     z.object({
       url: z.url(),
@@ -46,7 +47,7 @@ const createSongRequestAction = createSafeActionClient()
       .executeTakeFirstOrThrow()
 
     if (!id || id.length !== 11) {
-      return { error: 'Formato da URL inválido' }
+      throw createActionError('Formato da URL inválido')
     }
 
     const apiUrl = `https://noembed.com/embed?url=https://www.youtube.com/watch?v=${id}`

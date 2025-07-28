@@ -1,13 +1,13 @@
 'use server'
 
+import createAction from '@/actions/createAction'
 import { db } from '@/db/db'
-import { createSafeActionClient } from 'next-safe-action'
 import { redirect } from 'next/navigation'
 import z from 'zod'
 
 z.config(z.locales.pt())
 
-const confirmInviteAction = createSafeActionClient()
+const confirmInviteAction = createAction
   .inputSchema(
     z.object({
       id: z.uuidv4(),

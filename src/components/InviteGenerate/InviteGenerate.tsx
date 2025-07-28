@@ -2,7 +2,7 @@
 
 import generateInviteAction from '@/actions/generateInvite'
 import { useAction } from 'next-safe-action/hooks'
-import { type FC, PropsWithChildren, useEffect } from 'react'
+import { type FC, PropsWithChildren } from 'react'
 
 import Loader from '@/components/Loader'
 import { toastify } from '@/components/Toast'
@@ -13,15 +13,10 @@ type Props = PropsWithChildren<{
 }>
 
 const InviteGenerate: FC<Props> = ({ className, children, ids }) => {
-  const action = useAction(generateInviteAction)
-
-  useEffect(() => {
-    const errorMessage = action.result.serverError
-
-    if (errorMessage) {
-      toastify({ message: errorMessage })
-    } else if (action.result.data) {
-      const bytes = atob(action.result.data)
+  const action = useAction(generateInviteAction, {
+    onError: ({ error }) => toastify({ message: error.serverError }),
+    onSuccess: ({ data }) => {
+      const bytes = atob(data)
       const blob = new Blob([Uint8Array.from(bytes, (c) => c.charCodeAt(0))])
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
@@ -29,8 +24,8 @@ const InviteGenerate: FC<Props> = ({ className, children, ids }) => {
       a.download = 'convites.zip'
       a.click()
       URL.revokeObjectURL(url)
-    }
-  }, [action.result])
+    },
+  })
 
   return (
     <>

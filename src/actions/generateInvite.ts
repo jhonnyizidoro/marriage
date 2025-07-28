@@ -1,10 +1,10 @@
 'use server'
 
+import createAction from '@/actions/createAction'
 import { db } from '@/db/db'
 import env from '@/env'
 import { Jimp } from 'jimp'
 import JSZip from 'jszip'
-import { createSafeActionClient } from 'next-safe-action'
 import { cookies } from 'next/headers'
 import { join } from 'node:path'
 import QRCode from 'qrcode'
@@ -33,7 +33,7 @@ const generateInvite = async ({
   zip.file(`${name}.jpg`, buffer)
 }
 
-const generateInviteAction = createSafeActionClient()
+const generateInviteAction = createAction
   .inputSchema(
     z.object({
       ids: z.array(z.uuidv4()),

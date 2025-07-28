@@ -2,7 +2,7 @@
 
 import loginAction from '@/actions/login'
 import { useAction } from 'next-safe-action/hooks'
-import { type FC, useEffect, useState } from 'react'
+import { type FC, useState } from 'react'
 
 import Input from '@/components/Input'
 import Modal from '@/components/Modal'
@@ -10,15 +10,9 @@ import { toastify } from '@/components/Toast'
 
 const LoginModal: FC = () => {
   const [password, setPassword] = useState('')
-  const action = useAction(loginAction)
-
-  useEffect(() => {
-    const errorMessage = action.result.serverError || action.result.data?.error
-
-    if (errorMessage) {
-      toastify({ message: errorMessage })
-    }
-  }, [action.result])
+  const action = useAction(loginAction, {
+    onError: ({ error }) => toastify({ message: error.serverError }),
+  })
 
   return (
     <Modal
@@ -35,6 +29,7 @@ const LoginModal: FC = () => {
         value={password}
         autoComplete="current-password"
         type="password"
+        onEnterPress={() => action.execute({ password })}
         error={action.result.validationErrors?.password?._errors?.[0]}
       />
     </Modal>

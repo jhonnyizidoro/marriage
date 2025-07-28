@@ -7,7 +7,7 @@ import CloseIcon from '@/assets/icons/CloseIcon'
 
 import styles from './Toast.module.scss'
 
-export type Props = {
+type Props = {
   message: string
   bottom: number
 }

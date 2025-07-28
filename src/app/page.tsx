@@ -14,12 +14,13 @@ type Props = {
   searchParams: Promise<{
     id?: string
     modal?: string
+    force?: string
   }>
 }
 
 const HomePage: FC<Props> = async ({ searchParams }) => {
-  const id = (await searchParams).id
-  const data = await getHomeData(id)
+  const params = await searchParams
+  const data = await getHomeData(params.id, params.force === 'true')
 
   return (
     <>

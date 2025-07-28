@@ -76,6 +76,13 @@ const InvitesPage: FC<Props> = async ({ searchParams }) => {
             </InviteGenerate>
             <div>
               <Link
+                href={`/?modal=confirm&id=${i.id}&force=true`}
+                target="_blank"
+                className={styles.rowButton}
+              >
+                Confirmar
+              </Link>
+              <Link
                 href={`?modal=invite&id=${i.id}`}
                 shallow
                 replace

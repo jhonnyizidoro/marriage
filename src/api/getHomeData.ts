@@ -1,6 +1,6 @@
 import { db } from '@/db/db'
 
-const getHomeData = async (id = '') => {
+const getHomeData = async (id = '', force = false) => {
   if (!id) {
     return
   }
@@ -9,7 +9,12 @@ const getHomeData = async (id = '') => {
     db
       .selectFrom('invites')
       .where('id', '=', id)
-      .where('confirmedAt', 'is', null)
+      .where((qb) =>
+        qb.or([
+          qb('confirmedAt', 'is', null),
+          ...(force ? [qb('confirmedAt', 'is not', null)] : []),
+        ])
+      )
       .selectAll()
       .executeTakeFirst(),
     db

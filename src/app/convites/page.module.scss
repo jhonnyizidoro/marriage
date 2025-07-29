@@ -36,6 +36,10 @@
   align-items: center;
 }
 
+.rowLeft {
+  min-width: 0;
+}
+
 .rowTitle {
   font-size: 18px;
   font-weight: 400;
@@ -46,8 +50,6 @@
 }
 
 .rowName {
-  margin-right: 10px;
-
   &[data-confirmed='false'] {
     text-decoration: line-through rgba(0, 0, 0, 0.3);
   }
@@ -55,7 +57,9 @@
 
 .rowText {
   font-size: 14px;
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
 }
 
 .rowRight {
@@ -70,6 +74,7 @@
   background: transparent;
   padding-right: 0;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .rowButton {
@@ -78,12 +83,24 @@
   line-height: 1;
   cursor: pointer;
 
-  &:last-child {
-    padding-inline: 10px 0;
+  @media (min-width: 1001px) {
+    font-size: 14px;
+
+    &:last-child {
+      padding-inline: 7px 0;
+    }
+
+    &:not(:last-child) {
+      padding-inline: 7px;
+      border-right: 1px solid var(--dark);
+    }
   }
 
-  &:not(:last-child) {
-    padding-inline: 10px;
-    border-right: 1px solid var(--dark);
+  @media (max-width: 1000px) {
+    padding: 0;
+    display: block;
+    text-align: right;
+    width: 100%;
+    margin-top: 5px;
   }
 }

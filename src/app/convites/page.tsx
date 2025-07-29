@@ -53,7 +53,7 @@ const InvitesPage: FC<Props> = async ({ searchParams }) => {
       <TableHeader>Convites</TableHeader>
       {data.map((i) => (
         <TableRow key={i.id} className={styles.row}>
-          <div>
+          <div className={styles.rowLeft}>
             <h3 className={styles.rowTitle}>{i.name}</h3>
             <strong className={styles.rowCount}>
               {i.people.length} pessoa{i.people.length > 1 ? 's' : ''}

@@ -2,7 +2,7 @@ import { db } from '@/db/db'
 
 const getInvitesData = async () => {
   const [invites, invitedPeople] = await Promise.all([
-    db.selectFrom('invites').selectAll().orderBy('createdAt desc').execute(),
+    db.selectFrom('invites').selectAll().orderBy('createdAt', 'desc').execute(),
     db.selectFrom('invitedPeople').selectAll().execute(),
   ])
 

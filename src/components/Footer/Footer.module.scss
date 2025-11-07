@@ -13,6 +13,8 @@
 
 .logo {
   height: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.75;
 
   @media (max-width: 1000px) {
     display: block;
@@ -29,7 +31,7 @@
 }
 
 .link {
-  color: var(--orange);
+  color: var(--purple);
   font-size: 18px;
 
   @media (max-width: 1000px) {

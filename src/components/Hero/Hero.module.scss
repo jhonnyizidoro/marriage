@@ -1,109 +1,101 @@
-.container {
-  @media (min-width: 1001px) {
-    display: grid;
-    grid-template-columns: auto 400px auto;
-    gap: min(8vw, 140px);
-    margin-block: 100px;
-  }
-
-  @media (max-width: 1000px) {
-    margin-block: 100px 50px;
-  }
-}
-
-.left {
+.wrapper {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  @media (min-width: 1001px) {
+    height: max(500px, calc(100vh - 150px));
+  }
 
   @media (max-width: 1000px) {
-    height: 110vw;
+    padding-top: 40px;
+    height: max(500px, calc(100vh - 70px));
   }
 }
 
-.image {
+.flowers {
+  opacity: 0.3;
+  pointer-events: none;
   position: absolute;
   height: auto;
-  object-fit: cover;
 }
 
-.image1 {
-  height: 80%;
-  width: 80%;
+.flowers1 {
   top: 0;
   left: 0;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
 }
 
-.image2 {
-  height: 60%;
-  width: 65%;
+.flowers2 {
   right: 0;
-  bottom: 0;
-}
-
-.center {
-  text-align: center;
 
   @media (min-width: 1001px) {
-    padding-block: min(80px, 4vw);
+    top: -160px;
   }
 
   @media (max-width: 1000px) {
-    padding-block: 50px;
+    top: 0;
+    max-width: 80%;
   }
+}
+
+.flowers3 {
+  bottom: 0;
+  right: 50%;
+  translate: 50%;
+  rotate: 35deg;
+  max-width: 60%;
+}
+
+.container {
+  text-align: center;
 }
 
 .titleHeader {
   font-weight: 300;
 
   @media (min-width: 1001px) {
-    font-size: 90px;
+    font-size: 40px;
   }
 
   @media (max-width: 1000px) {
-    font-size: 70px;
+    font-size: 28px;
   }
 }
 
-.titleName1 {
+.titleName {
   font-weight: 400;
 
   @media (min-width: 1001px) {
-    font-size: 120px;
+    font-size: 60px;
   }
 
   @media (max-width: 1000px) {
-    font-size: 96px;
+    font-size: 40px;
   }
 }
 
 .titleAnd {
-  font-size: 100px;
   font-weight: 300;
 
   @media (min-width: 1001px) {
-    font-size: 100px;
+    font-size: 40px;
   }
 
   @media (max-width: 1000px) {
-    font-size: 50px;
-  }
-}
-
-.titleName2 {
-  font-size: 130px;
-  font-weight: 400;
-
-  @media (min-width: 1001px) {
-    font-size: 130px;
-  }
-
-  @media (max-width: 1000px) {
-    font-size: 100px;
+    font-size: 30px;
   }
 }
 
 .subtitle {
-  color: var(--red);
-  font-size: 32px;
+  color: var(--dark-purple);
+  font-size: 24px;
+  margin-top: 40px;
 }
 
 .legend {
@@ -130,36 +122,4 @@
   &::after {
     right: 0;
   }
-}
-
-.right {
-  position: relative;
-
-  @media (max-width: 1000px) {
-    height: 110vw;
-  }
-}
-
-.image3 {
-  height: 40%;
-  width: 35%;
-  left: 0;
-  bottom: 5%;
-  border-radius: 99px 99px 0 0;
-  z-index: 2;
-}
-
-.image4 {
-  width: 60%;
-  height: 90%;
-  bottom: 0;
-  left: 10%;
-  z-index: 1;
-}
-
-.image5 {
-  width: 35%;
-  height: 40%;
-  top: 0;
-  right: 0;
 }

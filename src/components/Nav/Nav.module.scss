@@ -1,4 +1,7 @@
 .container {
+  z-index: 1;
+  position: relative;
+
   @media (min-width: 1001px) {
     display: flex;
     justify-content: space-between;
@@ -94,14 +97,14 @@
   display: block;
   width: 100%;
   text-align: center;
-  color: var(--red);
+  color: var(--dark-purple);
   font-weight: 700;
   white-space: nowrap;
   cursor: pointer;
 }
 
 .dropdown {
-  background: var(--light-red);
+  background: var(--light-purple);
 
   @media (min-width: 1001px) {
     position: absolute;
@@ -121,7 +124,7 @@
 }
 
 .button {
-  background: var(--red);
+  background: var(--dark-purple);
   color: var(--background);
   font-size: 18px;
   padding: 15px 40px;

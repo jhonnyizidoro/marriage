@@ -15,11 +15,11 @@ const Gallery: FC = () => (
     {images.map((src) => (
       <Image
         className={styles.image}
-        key={src}
         src={`/gallery/${src}`}
         alt=""
         width={520}
         height={750}
+        key={src}
       />
     ))}
   </Container>

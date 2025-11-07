@@ -1,6 +1,7 @@
 .wrapper {
   @media (max-width: 1000px) {
     overflow: hidden;
+    padding-block: 6vw;
   }
 }
 
@@ -8,15 +9,15 @@
   position: relative;
 
   @media (min-width: 1001px) {
-    padding-block: 80px;
+    padding-block: 130px;
     border-top: 3px solid var(--light-gray);
     border-bottom: 3px solid var(--light-gray);
-    margin-block: 160px;
+    margin-bottom: 160px;
   }
 
   @media (max-width: 1000px) {
-    padding-block: 40px 70px;
-    margin-block: 30px;
+    padding-block: 70px;
+    margin-bottom: 30px;
     border-left: 3px solid var(--light-gray);
     border-right: 3px solid var(--light-gray);
   }
@@ -50,9 +51,18 @@
 }
 
 .title {
-  font-size: 32px;
   font-weight: 400;
   text-align: center;
+  font-weight: 300;
+  margin-top: 0;
+
+  @media (min-width: 1001px) {
+    font-size: 32px;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 26px;
+  }
 }
 
 .list {
@@ -73,7 +83,7 @@
 }
 
 .number {
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1;
   display: block;
 
@@ -89,10 +99,14 @@
 
 .label {
   display: block;
-  font-size: 24px;
   line-height: 1;
+  margin-top: -10px;
+
+  @media (min-width: 1001px) {
+    font-size: 22px;
+  }
 
   @media (max-width: 1000px) {
-    margin-top: -20px;
+    font-size: 18px;
   }
 }

@@ -35,7 +35,7 @@ const Countdown: FC = () => {
         seconds: `0${seconds}`.slice(-2),
         minutes: `0${minutes}`.slice(-2),
         hours: `0${hours}`.slice(-2),
-        days: `0${days}`.slice(-2),
+        days: days > 99 ? String(days) : `0${days}`.slice(-2),
       })
     }, 1_000)
 

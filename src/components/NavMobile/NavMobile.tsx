@@ -11,8 +11,7 @@ import {
 } from 'react'
 
 import Container from '@/components/Container'
-
-import Logo from './images/logo.png'
+import Logo from '@/components/Nav/images/logo.png'
 
 import styles from './NavMobile.module.scss'
 

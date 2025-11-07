@@ -1,5 +1,5 @@
 .wrapper {
-  background: var(--light-red);
+  background: var(--light-purple);
 
   @media (min-width: 1001px) {
     padding-block: 80px;
@@ -20,7 +20,7 @@
   }
 
   @media (max-width: 1000px) {
-    font-size: 54px;
+    font-size: 44px;
   }
 }
 

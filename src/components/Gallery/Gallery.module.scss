@@ -3,8 +3,8 @@
   align-items: start;
 
   @media (min-width: 1001px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
     margin-block: 100px;
   }
 
@@ -31,4 +31,5 @@
   object-fit: cover;
   height: auto;
   aspect-ratio: 1;
+  filter: grayscale(50%);
 }

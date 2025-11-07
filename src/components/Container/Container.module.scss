@@ -2,14 +2,22 @@
   margin-inline: auto;
 
   &[data-size='large'] {
-    width: min(1640px, 92%);
+    width: min(1640px, var(--max-width));
   }
 
   &[data-size='medium'] {
-    width: min(900px, 92%);
+    width: min(900px, var(--max-width));
   }
 
   &[data-size='small'] {
-    width: min(470px, 92%);
+    width: min(470px, var(--max-width));
+  }
+
+  @media (min-width: 1001px) {
+    --max-width: calc(100vw - 75px);
+  }
+
+  @media (max-width: 1000px) {
+    --max-width: 92%;
   }
 }

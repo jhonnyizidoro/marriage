@@ -3,8 +3,7 @@ import Link from 'next/link'
 import type { FC } from 'react'
 
 import Container from '@/components/Container'
-
-import Logo from './images/logo-light.png'
+import Logo from '@/components/Nav/images/logo.png'
 
 import styles from './Footer.module.scss'
 

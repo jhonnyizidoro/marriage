@@ -24,9 +24,9 @@ const generateInvite = async ({
   zip: JSZip
 }) => {
   const url = `${env.domain}?modal=confirm&id=${id}`
-  const x = template.width - 200 - 20
-  const y = template.height - 200 - 20
-  const qrBuffer = await QRCode.toBuffer(url, { width: 200 })
+  const x = template.width - 276 - 80
+  const y = template.height - 276 - 80
+  const qrBuffer = await QRCode.toBuffer(url, { width: 276 })
   const qrImage = await Jimp.read(qrBuffer)
   template.composite(qrImage, x, y)
   const buffer = await template.getBuffer('image/jpeg')

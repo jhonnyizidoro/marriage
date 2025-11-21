@@ -1,6 +1,6 @@
 'use client'
 
-import deleteInviteAction from '@/actions/deleteInvite'
+import deleteConfirmationAction from '@/actions/deleteConfirmation'
 import { useAction } from 'next-safe-action/hooks'
 import { type FC, PropsWithChildren } from 'react'
 
@@ -12,8 +12,8 @@ type Props = PropsWithChildren<{
   id: string
 }>
 
-const InviteDelete: FC<Props> = ({ className, children, id }) => {
-  const action = useAction(deleteInviteAction, {
+const ConfirmationDelete: FC<Props> = ({ className, children, id }) => {
+  const action = useAction(deleteConfirmationAction, {
     onError: ({ error }) => toastify({ message: error.serverError }),
   })
 
@@ -31,4 +31,4 @@ const InviteDelete: FC<Props> = ({ className, children, id }) => {
   )
 }
 
-export default InviteDelete
+export default ConfirmationDelete

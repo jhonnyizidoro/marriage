@@ -8,7 +8,7 @@ import z from 'zod'
 
 z.config(z.locales.pt())
 
-const deleteInviteAction = createAction
+const deleteConfirmationAction = createAction
   .inputSchema(
     z.object({
       id: z.uuidv4(),
@@ -25,28 +25,12 @@ const deleteInviteAction = createAction
       .where('id', '=', accessToken)
       .executeTakeFirstOrThrow()
 
-    // get current invited people and also update name on invite
-    const invitedPeople = await db
-      .selectFrom('invitedPeople')
-      .where('invite', '=', id)
-      .selectAll()
-      .execute()
-
-    const invitedPeopleToDelete = invitedPeople.map((p) => p.id)
-
-    if (invitedPeople.length) {
-      await db
-        .deleteFrom('invitedPeople')
-        .where('id', 'in', invitedPeopleToDelete)
-        .executeTakeFirstOrThrow()
-    }
-
     await db
-      .deleteFrom('invites')
+      .deleteFrom('confirmations')
       .where('id', '=', id)
       .executeTakeFirstOrThrow()
 
-    redirect('/convites')
+    redirect('/confirmacoes')
   })
 
-export default deleteInviteAction
+export default deleteConfirmationAction

@@ -1,0 +1,51 @@
+.wrapper {
+  min-height: calc(100vh - 222px);
+
+  @media (min-width: 1001px) {
+    padding-block: 80px;
+  }
+
+  @media (max-width: 1000px) {
+    padding-block: 150px 80px;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  white-space: nowrap;
+}
+
+.link {
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: underline;
+  background: transparent;
+  border: 0;
+  padding-right: 0;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: right;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rowTitle {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.rowButton {
+  background: transparent;
+  border: 0;
+  line-height: 1;
+  cursor: pointer;
+}

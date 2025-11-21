@@ -12,6 +12,18 @@ export type AuthFactorStatus = 'unverified' | 'verified'
 
 export type AuthFactorType = 'phone' | 'totp' | 'webauthn'
 
+export type AuthOauthAuthorizationStatus =
+  | 'approved'
+  | 'denied'
+  | 'expired'
+  | 'pending'
+
+export type AuthOauthClientType = 'confidential' | 'public'
+
+export type AuthOauthRegistrationType = 'dynamic' | 'manual'
+
+export type AuthOauthResponseType = 'code'
+
 export type AuthOneTimeTokenType =
   | 'confirmation_token'
   | 'email_change_token_current'
@@ -44,6 +56,8 @@ export type JsonPrimitive = boolean | number | string | null
 export type JsonValue = JsonArray | JsonObject | JsonPrimitive
 
 export type Numeric = ColumnType<string, number | string, number | string>
+
+export type StorageBuckettype = 'ANALYTICS' | 'STANDARD' | 'VECTOR'
 
 export type Timestamp = ColumnType<Date, Date | string, Date | string>
 
@@ -117,6 +131,10 @@ export interface AuthMfaFactors {
   friendly_name: string | null
   id: string
   last_challenged_at: Timestamp | null
+  /**
+   * Stores the latest WebAuthn challenge data including attestation/assertion for customer verification
+   */
+  last_webauthn_challenge_data: Json | null
   phone: string | null
   secret: string | null
   status: AuthFactorStatus
@@ -124,6 +142,49 @@ export interface AuthMfaFactors {
   user_id: string
   web_authn_aaguid: string | null
   web_authn_credential: Json | null
+}
+
+export interface AuthOauthAuthorizations {
+  approved_at: Timestamp | null
+  authorization_code: string | null
+  authorization_id: string
+  client_id: string
+  code_challenge: string | null
+  code_challenge_method: AuthCodeChallengeMethod | null
+  created_at: Generated<Timestamp>
+  expires_at: Generated<Timestamp>
+  id: string
+  redirect_uri: string
+  resource: string | null
+  response_type: Generated<AuthOauthResponseType>
+  scope: string
+  state: string | null
+  status: Generated<AuthOauthAuthorizationStatus>
+  user_id: string | null
+}
+
+export interface AuthOauthClients {
+  client_name: string | null
+  client_secret_hash: string | null
+  client_type: Generated<AuthOauthClientType>
+  client_uri: string | null
+  created_at: Generated<Timestamp>
+  deleted_at: Timestamp | null
+  grant_types: string
+  id: string
+  logo_uri: string | null
+  redirect_uris: string
+  registration_type: AuthOauthRegistrationType
+  updated_at: Generated<Timestamp>
+}
+
+export interface AuthOauthConsents {
+  client_id: string
+  granted_at: Generated<Timestamp>
+  id: string
+  revoked_at: Timestamp | null
+  scopes: string
+  user_id: string
 }
 
 export interface AuthOneTimeTokens {
@@ -185,6 +246,15 @@ export interface AuthSessions {
    * Auth: Not after is a nullable column that contains a timestamp after which the session should be regarded as expired.
    */
   not_after: Timestamp | null
+  oauth_client_id: string | null
+  /**
+   * Holds the ID (counter) of the last issued refresh token.
+   */
+  refresh_token_counter: Int8 | null
+  /**
+   * Holds a HMAC-SHA256 key used to sign refresh tokens for this session.
+   */
+  refresh_token_hmac_key: string | null
   refreshed_at: Timestamp | null
   tag: string | null
   updated_at: Timestamp | null
@@ -202,6 +272,7 @@ export interface AuthSsoDomains {
 
 export interface AuthSsoProviders {
   created_at: Timestamp | null
+  disabled: boolean | null
   id: string
   /**
    * Auth: Uniquely identifies a SSO provider according to a user-chosen resource ID (case insensitive), useful in infrastructure as code.
@@ -249,6 +320,12 @@ export interface AuthUsers {
   recovery_token: string | null
   role: string | null
   updated_at: Timestamp | null
+}
+
+export interface Confirmations {
+  createdAt: Generated<Timestamp>
+  id: Generated<string>
+  name: Generated<string>
 }
 
 export interface ExtensionsPgStatStatements {
@@ -308,21 +385,6 @@ export interface ExtensionsPgStatStatementsInfo {
   stats_reset: Timestamp | null
 }
 
-export interface InvitedPeople {
-  confirmedAt: Timestamp | null
-  createdAt: Generated<Timestamp>
-  id: Generated<string>
-  invite: string
-  name: string
-}
-
-export interface Invites {
-  confirmedAt: Timestamp | null
-  createdAt: Generated<Timestamp>
-  id: Generated<string>
-  name: string
-}
-
 export interface RealtimeMessages {
   event: string | null
   extension: string
@@ -375,7 +437,25 @@ export interface StorageBuckets {
   owner: string | null
   owner_id: string | null
   public: Generated<boolean | null>
+  type: Generated<StorageBuckettype>
   updated_at: Generated<Timestamp | null>
+}
+
+export interface StorageBucketsAnalytics {
+  created_at: Generated<Timestamp>
+  deleted_at: Timestamp | null
+  format: Generated<string>
+  id: Generated<string>
+  name: string
+  type: Generated<StorageBuckettype>
+  updated_at: Generated<Timestamp>
+}
+
+export interface StorageBucketsVectors {
+  created_at: Generated<Timestamp>
+  id: string
+  type: Generated<StorageBuckettype>
+  updated_at: Generated<Timestamp>
 }
 
 export interface StorageMigrations {
@@ -390,6 +470,7 @@ export interface StorageObjects {
   created_at: Generated<Timestamp | null>
   id: Generated<string>
   last_accessed_at: Generated<Timestamp | null>
+  level: number | null
   metadata: Json | null
   name: string | null
   /**
@@ -401,6 +482,14 @@ export interface StorageObjects {
   updated_at: Generated<Timestamp | null>
   user_metadata: Json | null
   version: string | null
+}
+
+export interface StoragePrefixes {
+  bucket_id: string
+  created_at: Generated<Timestamp | null>
+  level: Generated<number>
+  name: string
+  updated_at: Generated<Timestamp | null>
 }
 
 export interface StorageS3MultipartUploads {
@@ -426,6 +515,18 @@ export interface StorageS3MultipartUploadsParts {
   size: Generated<Int8>
   upload_id: string
   version: string
+}
+
+export interface StorageVectorIndexes {
+  bucket_id: string
+  created_at: Generated<Timestamp>
+  data_type: string
+  dimension: number
+  distance_metric: string
+  id: Generated<string>
+  metadata_configuration: Json | null
+  name: string
+  updated_at: Generated<Timestamp>
 }
 
 export interface VaultDecryptedSecrets {
@@ -459,6 +560,9 @@ export interface DB {
   'auth.mfa_amr_claims': AuthMfaAmrClaims
   'auth.mfa_challenges': AuthMfaChallenges
   'auth.mfa_factors': AuthMfaFactors
+  'auth.oauth_authorizations': AuthOauthAuthorizations
+  'auth.oauth_clients': AuthOauthClients
+  'auth.oauth_consents': AuthOauthConsents
   'auth.one_time_tokens': AuthOneTimeTokens
   'auth.refresh_tokens': AuthRefreshTokens
   'auth.saml_providers': AuthSamlProviders
@@ -468,20 +572,23 @@ export interface DB {
   'auth.sso_domains': AuthSsoDomains
   'auth.sso_providers': AuthSsoProviders
   'auth.users': AuthUsers
+  confirmations: Confirmations
   'extensions.pg_stat_statements': ExtensionsPgStatStatements
   'extensions.pg_stat_statements_info': ExtensionsPgStatStatementsInfo
-  invitedPeople: InvitedPeople
-  invites: Invites
   'realtime.messages': RealtimeMessages
   'realtime.schema_migrations': RealtimeSchemaMigrations
   'realtime.subscription': RealtimeSubscription
   sessions: Sessions
   songRequests: SongRequests
   'storage.buckets': StorageBuckets
+  'storage.buckets_analytics': StorageBucketsAnalytics
+  'storage.buckets_vectors': StorageBucketsVectors
   'storage.migrations': StorageMigrations
   'storage.objects': StorageObjects
+  'storage.prefixes': StoragePrefixes
   'storage.s3_multipart_uploads': StorageS3MultipartUploads
   'storage.s3_multipart_uploads_parts': StorageS3MultipartUploadsParts
+  'storage.vector_indexes': StorageVectorIndexes
   'vault.decrypted_secrets': VaultDecryptedSecrets
   'vault.secrets': VaultSecrets
 }

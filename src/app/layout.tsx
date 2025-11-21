@@ -1,7 +1,9 @@
 import appMetadata from '@/utils/metadata'
 import type { Viewport } from 'next'
+import { cookies } from 'next/headers'
 import { PropsWithChildren } from 'react'
 
+import ConfirmModal from '@/components/ConfirmModal'
 import Footer from '@/components/Footer'
 import Nav from '@/components/Nav'
 
@@ -15,14 +17,20 @@ export const viewport: Viewport = {
 
 export const metadata = appMetadata
 
-const RootLayout = ({ children }: PropsWithChildren) => (
-  <html lang="pt-br">
-    <body className={moneta.variable}>
-      <Nav />
-      {children}
-      <Footer />
-    </body>
-  </html>
-)
+const RootLayout = async ({ children }: PropsWithChildren) => {
+  const cookieStore = await cookies()
+  const confirmed = !!cookieStore.get('confirmed')
+
+  return (
+    <html lang="pt-br">
+      <body className={moneta.variable}>
+        <Nav />
+        {children}
+        <Footer />
+        <ConfirmModal confirmed={confirmed} />
+      </body>
+    </html>
+  )
+}
 
 export default RootLayout

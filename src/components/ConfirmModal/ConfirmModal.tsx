@@ -1,75 +1,88 @@
 'use client'
 
-import confirmInviteAction from '@/actions/confirmInvite'
-import getHomeData from '@/api/getHomeData'
+import addConfirmationsAction from '@/actions/addConfirmations'
 import { useAction } from 'next-safe-action/hooks'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { type FC, useCallback, useEffect, useState } from 'react'
 
 import Checkbox from '@/components/Checkbox'
+import Input from '@/components/Input'
 import Modal from '@/components/Modal'
 import { toastify } from '@/components/Toast'
+
+import PlusIcon from '@/assets/icons/PlusIcon'
 
 import styles from './ConfirmModal.module.scss'
 
 type Props = {
-  data: NonNullable<Awaited<ReturnType<typeof getHomeData>>>
+  confirmed: boolean
 }
 
-const ConfirmModal: FC<Props> = ({ data }) => {
-  const [confirmed, setConfirmed] = useState<string[]>([])
-  const action = useAction(confirmInviteAction, {
+const ConfirmModal: FC<Props> = ({ confirmed }) => {
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const [person, setPerson] = useState('')
+  const [people, setPeople] = useState<string[]>([])
+  const action = useAction(addConfirmationsAction, {
     onError: ({ error }) => toastify({ message: error.serverError }),
   })
 
-  const toggleConfirmation = useCallback((id: string) => {
-    setConfirmed((state) =>
-      state.includes(id)
-        ? state.filter((auxId) => id !== auxId)
-        : [...state, id]
-    )
+  const addPerson = useCallback((person: string) => {
+    setPeople((state) => [...state, person])
+    setPerson('')
+  }, [])
+
+  const removePerson = useCallback((person: string) => {
+    setPeople((state) => state.filter((auxPerson) => person !== auxPerson))
+    setPerson('')
   }, [])
 
   useEffect(() => {
-    const errorMessage =
-      action.result.validationErrors?.people &&
-      '_errors' in action.result.validationErrors?.people
-        ? action.result.validationErrors?.people._errors?.[0]
-        : ''
-
-    if (errorMessage) {
-      toastify({ message: errorMessage })
+    if (!action.hasErrored) {
+      return
     }
-  }, [action.result])
+
+    toastify({
+      message:
+        'Erro ao inserir. Adicione pelo menos um nome para ser confirmado clicando no botão ao lado do campo de texto (+)',
+    })
+  }, [action.hasErrored])
 
   useEffect(() => {
-    setConfirmed(data.people.map((p) => p.id))
-  }, [data])
+    setPeople([])
+  }, [searchParams])
 
   return (
     <Modal
-      param="confirm"
+      param={confirmed ? 'nav-confirm' : 'confirm'}
       title="Confirme sua presença"
       cancelLabel="Deixar para depois"
       okLabel="Confirmar"
-      onOk={() => action.execute({ people: confirmed, id: data?.id })}
+      onOk={() => action.execute({ people, redirectUrl: pathname })}
       isLoading={action.status === 'executing'}
     >
       <p className={styles.text}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quas,
-        commodi alias dicta at tempora saepe sed, obcaecati inventore molestiae,
-        eos quia rem veritatis. Rem ipsam, natus aut dignissimos eos ea,
-        aspernatur exercitationem sed vel ex eius dolorem pariatur.
+        É com muita alegria que recebemos você no nosso grande dia
       </p>
-      <strong className={styles.title}>
-        Deseja confirmar a presença de todos os convidados?
-      </strong>
-      {data.people.map((p, i) => (
-        <Checkbox
-          label={p.name}
-          key={i}
-          checked={confirmed.includes(p.id)}
-          onChange={() => toggleConfirmation(p.id)}
+      <div className={styles.inputWrapper}>
+        <Input
+          label="Nome do convidado"
+          onChange={setPerson}
+          value={person}
+          onEnterPress={() => addPerson(person)}
         />
+        <button className={styles.button} onClick={() => addPerson(person)}>
+          <PlusIcon width={20} />
+        </button>
+      </div>
+      {!people.length && (
+        <strong className={styles.title}>
+          Adicione os nomes que deseja confirmar
+        </strong>
+      )}
+
+      {people.map((p, i) => (
+        <Checkbox label={p} key={i} checked onChange={() => removePerson(p)} />
       ))}
     </Modal>
   )

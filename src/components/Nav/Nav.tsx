@@ -49,19 +49,32 @@ const Nav: FC = async () => {
           </Link>
           <div className={styles.right}>
             {!accessToken && (
-              <Link className={styles.link} href="?modal=login" replace shallow>
-                Login
-              </Link>
+              <div className={styles.dropdownWrapper}>
+                <span className={styles.dropdownLabel} role="link">
+                  Menu
+                </span>
+                <div className={styles.dropdown}>
+                  <Link
+                    className={styles.dropdownLink}
+                    href="?modal=nav-confirm"
+                  >
+                    Confirmar presença
+                  </Link>
+                  <Link className={styles.dropdownLink} href="?modal=login">
+                    Login
+                  </Link>
+                </div>
+              </div>
             )}
 
             {accessToken && (
               <div className={styles.dropdownWrapper}>
                 <span className={styles.dropdownLabel} role="link">
-                  Ações
+                  Menu
                 </span>
                 <div className={styles.dropdown}>
-                  <Link className={styles.dropdownLink} href="/convites">
-                    Convites
+                  <Link className={styles.dropdownLink} href="/confirmacoes">
+                    Confirmações
                   </Link>
                   <Link
                     className={styles.dropdownLink}

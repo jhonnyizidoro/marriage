@@ -9,20 +9,21 @@ import { toastify } from '@/components/Toast'
 
 type Props = PropsWithChildren<{
   className?: string
-  ids: string[]
 }>
 
-const InviteGenerate: FC<Props> = ({ className, children, ids }) => {
+const InviteGenerate: FC<Props> = ({ className, children }) => {
   const action = useAction(generateInviteAction, {
     onError: ({ error }) => toastify({ message: error.serverError }),
-    onSuccess: ({ data }) => {
-      const bytes = atob(data)
-      const blob = new Blob([Uint8Array.from(bytes, (c) => c.charCodeAt(0))])
+    onSuccess: async ({ data }) => {
+      const res = await fetch(data)
+      const blob = await res.blob()
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = 'convites.zip'
+      a.download = 'convite.jpg'
+      document.body.appendChild(a)
       a.click()
+      a.remove()
       URL.revokeObjectURL(url)
     },
   })
@@ -32,7 +33,7 @@ const InviteGenerate: FC<Props> = ({ className, children, ids }) => {
       <button
         className={className}
         type="button"
-        onClick={() => action.execute({ ids })}
+        onClick={() => action.execute()}
       >
         {children}
       </button>

@@ -3,8 +3,19 @@
   text-align: center;
 }
 
-.title {
-  font-size: 18px;
-  display: block;
+.inputWrapper {
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
   margin-block: 40px 15px;
+}
+
+.button {
+  background: var(--dark-purple);
+  color: var(--background);
+  font-size: 18px;
+  padding: 14px 20px 8px;
+  display: inline-block;
+  border: 0;
+  cursor: pointer;
 }

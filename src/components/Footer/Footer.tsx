@@ -26,10 +26,10 @@ const Footer: FC = () => (
         <Link className={styles.link} href="/como-chegar">
           Como chegar
         </Link>
-        <Link className={styles.link} href="/vestimentas">
+        <Link className={styles.link} href="/em-construcao">
           Vestimentas
         </Link>
-        <Link className={styles.link} href="/galeria">
+        <Link className={styles.link} href="/em-construcao">
           Galeria de fotos
         </Link>
       </div>

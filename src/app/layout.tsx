@@ -1,4 +1,5 @@
 import appMetadata from '@/utils/metadata'
+import { Analytics } from '@vercel/analytics/next'
 import type { Viewport } from 'next'
 import { cookies } from 'next/headers'
 import { PropsWithChildren } from 'react'
@@ -24,6 +25,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
   return (
     <html lang="pt-br">
       <body className={moneta.variable}>
+        <Analytics />
         <Nav />
         {children}
         <Footer />

@@ -11,6 +11,7 @@
     "schema:generate": "kysely-codegen --out-file ./src/db/schema.ts && prettier --write ./src/db/schema.ts"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "jimp": "^1.6.0",
     "kysely": "^0.28.3",
     "next": "15.4.10",

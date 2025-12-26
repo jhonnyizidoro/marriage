@@ -19,8 +19,8 @@ const ProductCard: FC<Props> = ({ price, title, image, url }) => (
       className={styles.image}
       src={image || Placeholder}
       alt={title}
-      width={1000}
-      height={1000}
+      width={275}
+      height={275}
     />
     <div className={styles.content}>
       <h3 className={styles.title}>{title}</h3>

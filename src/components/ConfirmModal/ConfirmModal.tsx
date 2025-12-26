@@ -54,7 +54,7 @@ const ConfirmModal: FC<Props> = ({ confirmed }) => {
 
   return (
     <Modal
-      param={confirmed ? 'nav-confirm' : 'confirm'}
+      params={confirmed ? ['nav-confirm'] : ['confirm', 'nav-confirm']}
       title="Confirme sua presença"
       cancelLabel="Deixar para depois"
       okLabel="Confirmar"

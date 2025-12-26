@@ -15,12 +15,12 @@ type Props = PropsWithChildren<{
   cancelLabel: string
   okLabel: string
   onOk: () => void
-  param: string
+  params: string[]
   isLoading?: boolean
 }>
 
 const Modal: FC<Props> = ({
-  param,
+  params,
   children,
   cancelLabel,
   okLabel,
@@ -31,7 +31,8 @@ const Modal: FC<Props> = ({
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const { replace } = useRouter()
-  const isOpen = searchParams.get('modal') === param
+  const isOpen =
+    searchParams.get('modal') && params.includes(searchParams.get('modal')!)
 
   const close = useCallback(() => {
     replace(pathname)

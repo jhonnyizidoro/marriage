@@ -16,7 +16,7 @@ const LoginModal: FC = () => {
 
   return (
     <Modal
-      param="login"
+      params={['login']}
       title="Faça seu login"
       cancelLabel="Canelar"
       okLabel="Fazer login"

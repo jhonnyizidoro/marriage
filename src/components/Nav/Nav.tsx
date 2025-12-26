@@ -1,4 +1,3 @@
-import env from '@/env'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -30,9 +29,6 @@ const Nav: FC = async () => {
             </Link>
             <Link className={styles.link} href="/como-chegar">
               Como chegar
-            </Link>
-            <Link className={styles.link} href="/em-construcao">
-              Vestimentas
             </Link>
             <Link className={styles.link} href="/em-construcao">
               Galeria de fotos
@@ -87,7 +83,7 @@ const Nav: FC = async () => {
               </div>
             )}
 
-            <Link className={styles.button} href={env.storeUrl} target="_blank">
+            <Link className={styles.button} href="/lista-de-presentes">
               Lista de presentes
             </Link>
           </div>

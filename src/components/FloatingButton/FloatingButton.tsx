@@ -1,6 +1,5 @@
 'use client'
 
-import env from '@/env'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { type FC } from 'react'
@@ -18,7 +17,7 @@ const FloatingButton: FC = () => {
   }
 
   return (
-    <Link href={env.storeUrl} className={styles.button}>
+    <Link href="/lista-de-presentes" className={styles.button}>
       <GiftIcon width={20} className={styles.icon} />
       <span className={styles.text}>Lista de presentes</span>
     </Link>

@@ -27,9 +27,6 @@ const Footer: FC = () => (
           Como chegar
         </Link>
         <Link className={styles.link} href="/em-construcao">
-          Vestimentas
-        </Link>
-        <Link className={styles.link} href="/em-construcao">
           Galeria de fotos
         </Link>
       </div>

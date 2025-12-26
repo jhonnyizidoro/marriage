@@ -1,0 +1,13 @@
+.wrapper {
+  display: grid;
+  gap: 30px;
+
+  @media (min-width: 1001px) {
+    grid-template-columns: repeat(3, 1fr);
+    margin-block: 50px 100px;
+  }
+
+  @media (max-width: 1000px) {
+    margin-block: 100px 50px;
+  }
+}

@@ -1,0 +1,41 @@
+.item {
+  background: var(--light-purple);
+  flex-shrink: 0;
+}
+
+.image {
+  aspect-ratio: 1.1;
+  object-fit: cover;
+  height: auto;
+}
+
+.content {
+  @media (min-width: 1001px) {
+    padding: 15px;
+  }
+
+  @media (max-width: 1000px) {
+    padding: 9px;
+  }
+}
+
+.title {
+  color: var(--dark-purple);
+  margin-block: 5px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  @media (min-width: 1001px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 18px;
+  }
+}
+
+.price {
+  font-size: 18px;
+}

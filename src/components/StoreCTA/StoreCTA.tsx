@@ -1,4 +1,4 @@
-import getProducts from '@/utils/store/getProducts'
+import getProductsData from '@/api/getProductsData'
 import Link from 'next/link'
 import type { FC } from 'react'
 
@@ -8,7 +8,7 @@ import ProductCard from '@/components/ProductCard'
 import styles from './StoreCTA.module.scss'
 
 const StoreCTA: FC = async () => {
-  const products = await getProducts({ limit: 3 })
+  const products = await getProductsData({ limit: 3 })
 
   return (
     <div className={styles.wrapper}>

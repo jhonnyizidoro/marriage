@@ -1,4 +1,4 @@
-import makeRequest from '@/utils/store/makeRequest'
+import makeShopifyRequest from '@/utils/makeShopifyRequest'
 
 const query = `
   query ($limit: Int) {
@@ -62,8 +62,8 @@ type QueryResult = {
   }
 }
 
-const getProducts = async ({ limit }: { limit: number }) => {
-  const data = await makeRequest<QueryResult>({
+const getProductsData = async ({ limit }: { limit: number }) => {
+  const data = await makeShopifyRequest<QueryResult>({
     query,
     variables: { limit },
   })
@@ -77,4 +77,4 @@ const getProducts = async ({ limit }: { limit: number }) => {
   }))
 }
 
-export default getProducts
+export default getProductsData

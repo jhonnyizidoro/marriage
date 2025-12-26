@@ -5,6 +5,8 @@
   @media (min-width: 1001px) {
     grid-template-columns: repeat(3, 1fr);
     margin-block: 50px 100px;
+    min-height: calc(100vh - 360px);
+    align-items: start;
   }
 
   @media (max-width: 1000px) {

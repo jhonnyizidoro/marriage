@@ -2,12 +2,12 @@ import makeShopifyRequest from '@/utils/makeShopifyRequest'
 
 const query = `
   query ($limit: Int) {
-    products(first: $limit) {
+    products(first: $limit, sortKey: PRICE, reverse: false) {
       edges {
         node {
           id
           title
-           onlineStoreUrl
+          onlineStoreUrl
           images(first: 1) {
             edges {
               node {

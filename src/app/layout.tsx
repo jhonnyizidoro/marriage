@@ -1,3 +1,4 @@
+import getInvitesData from '@/api/getInvitesData'
 import appMetadata from '@/utils/metadata'
 import { Analytics } from '@vercel/analytics/next'
 import type { Viewport } from 'next'
@@ -21,6 +22,7 @@ export const metadata = appMetadata
 const RootLayout = async ({ children }: PropsWithChildren) => {
   const cookieStore = await cookies()
   const confirmed = !!cookieStore.get('confirmed')
+  const invites = await getInvitesData()
 
   return (
     <html lang="pt-br">
@@ -29,7 +31,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
         <Nav />
         {children}
         <Footer />
-        <ConfirmModal confirmed={confirmed} />
+        <ConfirmModal confirmed={confirmed} invites={invites} />
       </body>
     </html>
   )

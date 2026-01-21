@@ -1,0 +1,31 @@
+.list {
+  position: absolute;
+  background: var(--background);
+  width: 100%;
+  max-height: 200px;
+  overflow: auto;
+  top: 80px;
+  border: 1px solid var(--light-gray);
+  animation: showList 0.2s forwards;
+  padding-block: 10px;
+  z-index: 1;
+}
+
+.listItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 10px 20px;
+
+  &:hover {
+    background: var(--lighter-gray);
+  }
+}
+
+@keyframes showList {
+  from {
+    opacity: 0;
+  }
+}

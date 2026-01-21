@@ -46,6 +46,9 @@
 .rowButton {
   background: transparent;
   border: 0;
-  line-height: 1;
+  line-height: 1.2;
   cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: right;
 }

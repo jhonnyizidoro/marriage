@@ -24,19 +24,23 @@ const wazeLink = `https://waze.com/ul?q=${encodeURIComponent(env.address)}`
 const agenda = [
   {
     title: 'Início do evento',
-    duration: 30,
-  },
-  {
-    title: 'Início da cerimônia',
     duration: 60,
   },
   {
-    title: 'Atração surpresa',
+    title: 'Cerimônia',
+    duration: 60,
+  },
+  {
+    title: 'Fotos',
     duration: 60,
   },
   {
     title: 'Jantar',
     duration: 90,
+  },
+  {
+    title: 'Abertura da pista',
+    duration: 30,
   },
   {
     title: 'Banda',

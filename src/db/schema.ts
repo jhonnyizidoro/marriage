@@ -17,6 +17,13 @@ export interface Confirmations {
   name: string
 }
 
+export interface Invites {
+  confirmedAt: Timestamp | null
+  createdAt: Generated<Timestamp>
+  id: Generated<string>
+  name: string
+}
+
 export interface Sessions {
   createdAt: Generated<Timestamp>
   id: Generated<string>
@@ -32,6 +39,7 @@ export interface SongRequests {
 
 export interface DB {
   confirmations: Confirmations
+  invites: Invites
   sessions: Sessions
   songRequests: SongRequests
 }

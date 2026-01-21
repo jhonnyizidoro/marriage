@@ -8,7 +8,7 @@ import z from 'zod'
 
 z.config(z.locales.pt())
 
-const deleteConfirmationAction = createAction
+const deleteInviteAction = createAction
   .inputSchema(
     z.object({
       id: z.uuidv4(),
@@ -26,11 +26,11 @@ const deleteConfirmationAction = createAction
       .executeTakeFirstOrThrow()
 
     await db
-      .deleteFrom('confirmations')
+      .deleteFrom('invites')
       .where('id', '=', id)
       .executeTakeFirstOrThrow()
 
     redirect('/confirmacoes')
   })
 
-export default deleteConfirmationAction
+export default deleteInviteAction

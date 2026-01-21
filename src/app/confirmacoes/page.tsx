@@ -4,6 +4,7 @@ import { FC } from 'react'
 
 import ConfirmInvite from '@/components/ConfirmInvite'
 import Container from '@/components/Container'
+import CreateInvite from '@/components/CreateInvite'
 import DeleteInvite from '@/components/DeleteInvite'
 import InviteGenerate from '@/components/InviteGenerate'
 import TableHeader from '@/components/TableHeader'
@@ -33,6 +34,8 @@ const InvitesPage: FC = async () => {
           </Link>
         </div>
       </div>
+
+      <CreateInvite />
 
       <TableHeader>Confirmações</TableHeader>
       {data.map((i) => (

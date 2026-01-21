@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
+  margin-block: 30px;
+}
+
+.button {
+  background: var(--dark-purple);
+  color: var(--background);
+  font-size: 18px;
+  padding: 14px 15px 8px;
+  display: inline-block;
+  border: 0;
+  cursor: pointer;
+}

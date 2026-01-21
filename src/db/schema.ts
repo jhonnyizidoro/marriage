@@ -11,12 +11,6 @@ export type Generated<T> =
 
 export type Timestamp = ColumnType<Date, Date | string, Date | string>
 
-export interface Confirmations {
-  createdAt: Generated<Timestamp>
-  id: Generated<string>
-  name: string
-}
-
 export interface Invites {
   confirmedAt: Timestamp | null
   createdAt: Generated<Timestamp>
@@ -38,7 +32,6 @@ export interface SongRequests {
 }
 
 export interface DB {
-  confirmations: Confirmations
   invites: Invites
   sessions: Sessions
   songRequests: SongRequests

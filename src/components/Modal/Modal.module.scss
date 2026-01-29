@@ -15,6 +15,7 @@
   background: var(--background);
   position: relative;
   width: min(570px, 95%);
+  overflow: auto;
 
   @media (min-width: 1001px) {
     padding: 45px;
@@ -23,6 +24,11 @@
   @media (max-width: 1000px) {
     padding: 25px;
   }
+}
+
+.innerContent {
+  max-height: calc(100vh - 300px);
+  overflow: auto;
 }
 
 .closeLink {

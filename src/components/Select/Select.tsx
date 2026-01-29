@@ -1,3 +1,5 @@
+'use client'
+
 import { useClickAway } from '@/hooks/click-away'
 import { useCallback, useId, useMemo, useRef, useState } from 'react'
 import type { FC, InputHTMLAttributes } from 'react'

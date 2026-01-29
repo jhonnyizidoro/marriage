@@ -13,8 +13,8 @@ import styles from './Modal.module.scss'
 type Props = PropsWithChildren<{
   title: string
   cancelLabel: string
-  okLabel: string
-  onOk: () => void
+  okLabel?: string
+  onOk?: () => void
   params: string[]
   isLoading?: boolean
 }>
@@ -74,7 +74,7 @@ const Modal: FC<Props> = ({
           <CloseIcon width={20} />
         </Link>
         <strong className={styles.title}>{title}</strong>
-        <div>{children}</div>
+        <div className={styles.innerContent}>{children}</div>
         <div className={styles.footer}>
           <Link
             href={pathname}
@@ -85,9 +85,11 @@ const Modal: FC<Props> = ({
           >
             {cancelLabel}
           </Link>
-          <button className={styles.okButton} type="button" onClick={onOk}>
-            {okLabel}
-          </button>
+          {!!onOk && !!okLabel && (
+            <button className={styles.okButton} type="button" onClick={onOk}>
+              {okLabel}
+            </button>
+          )}
         </div>
       </div>
     </div>

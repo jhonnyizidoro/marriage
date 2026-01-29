@@ -1,3 +1,5 @@
+'use client'
+
 import { type FC, type InputHTMLAttributes, useId } from 'react'
 
 import CheckIcon from '@/assets/icons/CheckIcon'

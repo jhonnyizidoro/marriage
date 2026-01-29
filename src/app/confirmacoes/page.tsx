@@ -6,7 +6,7 @@ import ConfirmInvite from '@/components/ConfirmInvite'
 import Container from '@/components/Container'
 import CreateInvite from '@/components/CreateInvite'
 import DeleteInvite from '@/components/DeleteInvite'
-import InviteGenerate from '@/components/InviteGenerate'
+import InviteListModal from '@/components/InviteListModal'
 import TableHeader from '@/components/TableHeader'
 import TableRow from '@/components/TableRow'
 
@@ -28,9 +28,14 @@ const InvitesPage: FC = async () => {
           </div>
         </div>
         <div>
-          <InviteGenerate className={styles.link}>Gerar convite</InviteGenerate>
           <Link className={styles.link} href="?modal=nav-confirm">
             Confirmar presença
+          </Link>
+          <Link className={styles.link} href="?modal=confirmed">
+            Ver confirmados
+          </Link>
+          <Link className={styles.link} href="?modal=not-confirmed">
+            Ver não confirmados
           </Link>
         </div>
       </div>
@@ -73,6 +78,18 @@ const InvitesPage: FC = async () => {
           </div>
         </TableRow>
       ))}
+
+      <InviteListModal
+        params={['confirmed']}
+        invites={data.filter((i) => !!i.confirmedAt).map((i) => i.name)}
+        title="Lista de convidados confirmados"
+      />
+
+      <InviteListModal
+        params={['not-confirmed']}
+        invites={data.filter((i) => !i.confirmedAt).map((i) => i.name)}
+        title="Lista de convidados não confirmados"
+      />
     </Container>
   )
 }

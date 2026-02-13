@@ -3,7 +3,7 @@ import z from 'zod'
 const schema = z.object({
   databaseUrl: z.string().default(''),
   storeUrl: z.string(),
-  marriageDate: z.coerce.date(),
+  marriageDate: z.string(),
   address: z.string(),
   appPassword: z.string().default(''),
   domain: z.url(),

@@ -1,5 +1,5 @@
-const getTime = (date: Date) =>
-  date.toLocaleTimeString('pt-BR', {
+const getTime = (date: string) =>
+  new Date(date).toLocaleTimeString('pt-BR', {
     hour: '2-digit',
     minute: '2-digit',
   })

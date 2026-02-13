@@ -12,7 +12,7 @@ import Flowers3 from './images/flowers-3.png'
 import styles from './Hero.module.scss'
 
 const Hero: FC = () => {
-  const diff = env.marriageDate.getTime() - Date.now()
+  const diff = new Date(env.marriageDate).getTime() - Date.now()
   const days = Math.max(Math.floor(diff / (1000 * 60 * 60 * 24)), 0)
 
   return (

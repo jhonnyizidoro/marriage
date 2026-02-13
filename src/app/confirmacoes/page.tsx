@@ -56,7 +56,7 @@ const InvitesPage: FC = async () => {
                       day: '2-digit',
                       month: '2-digit',
                       year: 'numeric',
-                    }).format(i.createdAt)}
+                    }).format(i.confirmedAt)}
                   </strong>
                 </>
               )}

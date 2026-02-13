@@ -20,7 +20,7 @@ const Countdown: FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const diff = env.marriageDate.getTime() - Date.now()
+      const diff = new Date(env.marriageDate).getTime() - Date.now()
 
       if (diff < 0) {
         return

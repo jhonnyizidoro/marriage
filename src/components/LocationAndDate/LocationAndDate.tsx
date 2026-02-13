@@ -59,7 +59,7 @@ const agenda = [
 
   return {
     title: item.title,
-    startsAt: getTime(startsAt),
+    startsAt: getTime(startsAt.toISOString()),
   }
 })
 
@@ -104,7 +104,7 @@ const LocationAndDate: FC<Props> = ({ showIframe }) => (
       {agenda.map((item, i) => (
         <TableRow key={i} className={styles.agendaItem}>
           <span>{item.title}</span>
-          <strong>{item.startsAt.toLocaleString()}</strong>
+          <strong>{item.startsAt}</strong>
         </TableRow>
       ))}
     </Container>

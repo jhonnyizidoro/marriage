@@ -45,6 +45,7 @@ const Gallery: FC<Props> = ({ type }) => {
               width={520}
               height={750}
               quality={90}
+              data-grayscale={type === 'preview'}
             />
           </Link>
           <Link

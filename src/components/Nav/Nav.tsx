@@ -30,7 +30,7 @@ const Nav: FC = async () => {
             <Link className={styles.link} href="/como-chegar">
               Como chegar
             </Link>
-            <Link className={styles.link} href="/em-construcao">
+            <Link className={styles.link} href="/galeria">
               Galeria de fotos
             </Link>
           </div>

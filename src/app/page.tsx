@@ -18,7 +18,7 @@ const HomePage: FC = async () => {
       <h3 className={styles.bottomTitle}>
         Aguardamos ansiosamente a sua presença para esse dia especial
       </h3>
-      <Gallery />
+      <Gallery type="preview" />
     </>
   )
 }

@@ -27,9 +27,29 @@
   }
 }
 
+.imageWrapper {
+  position: relative;
+}
+
 .image {
   object-fit: cover;
   height: auto;
+  width: 100%;
   aspect-ratio: 0.8;
   filter: grayscale(50%);
+  pointer-events: none;
+}
+
+.downloadButton {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--dark-purple);
+  color: var(--background);
 }
